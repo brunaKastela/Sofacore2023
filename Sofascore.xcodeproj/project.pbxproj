@@ -25,7 +25,6 @@
 		D288312329B225E0007E6D3B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D288312129B225E0007E6D3B /* LaunchScreen.storyboard */; };
 		D2886B9C29C1C7800072C108 /* TabItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2886B9B29C1C7800072C108 /* TabItemView.swift */; };
 		D2886B9E29C1D03C0072C108 /* TabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2886B9D29C1D03C0072C108 /* TabView.swift */; };
-		D2886BA029C1EA5D0072C108 /* ContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2886B9F29C1EA5D0072C108 /* ContainerView.swift */; };
 		D2887E3729C0D134003AAA5B /* UIButton+AttributesBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2887E2E29C0D134003AAA5B /* UIButton+AttributesBuilder.swift */; };
 		D2887E3829C0D134003AAA5B /* UIView+AttributesBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2887E2F29C0D134003AAA5B /* UIView+AttributesBuilder.swift */; };
 		D2887E3929C0D134003AAA5B /* UITextField+AttributesBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2887E3029C0D134003AAA5B /* UITextField+AttributesBuilder.swift */; };
@@ -39,6 +38,7 @@
 		D2887E4429C0F152003AAA5B /* UIColors+Styles.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2887E4329C0F152003AAA5B /* UIColors+Styles.swift */; };
 		D2887E4629C0F179003AAA5B /* UIFont+Styles.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2887E4529C0F179003AAA5B /* UIFont+Styles.swift */; };
 		D29BB50929C09ABA008C3178 /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D29BB50829C09ABA008C3178 /* HeaderView.swift */; };
+		D29EFD2E29C34C7C00C68D97 /* UserPreferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = D29EFD2D29C34C7C00C68D97 /* UserPreferences.swift */; };
 		D2D9A15A29C0A610001A8FC3 /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2D9A15829C0A610001A8FC3 /* BaseView.swift */; };
 		D2D9A15B29C0A610001A8FC3 /* BaseViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2D9A15929C0A610001A8FC3 /* BaseViewProtocol.swift */; };
 /* End PBXBuildFile section */
@@ -69,7 +69,6 @@
 		D288312429B225E0007E6D3B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D2886B9B29C1C7800072C108 /* TabItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabItemView.swift; sourceTree = "<group>"; };
 		D2886B9D29C1D03C0072C108 /* TabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabView.swift; sourceTree = "<group>"; };
-		D2886B9F29C1EA5D0072C108 /* ContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerView.swift; sourceTree = "<group>"; };
 		D2887E2E29C0D134003AAA5B /* UIButton+AttributesBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIButton+AttributesBuilder.swift"; sourceTree = "<group>"; };
 		D2887E2F29C0D134003AAA5B /* UIView+AttributesBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+AttributesBuilder.swift"; sourceTree = "<group>"; };
 		D2887E3029C0D134003AAA5B /* UITextField+AttributesBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITextField+AttributesBuilder.swift"; sourceTree = "<group>"; };
@@ -83,6 +82,7 @@
 		D2887E4329C0F152003AAA5B /* UIColors+Styles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColors+Styles.swift"; sourceTree = "<group>"; };
 		D2887E4529C0F179003AAA5B /* UIFont+Styles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Styles.swift"; sourceTree = "<group>"; };
 		D29BB50829C09ABA008C3178 /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
+		D29EFD2D29C34C7C00C68D97 /* UserPreferences.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPreferences.swift; sourceTree = "<group>"; };
 		D2D9A15829C0A610001A8FC3 /* BaseView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseView.swift; sourceTree = "<group>"; };
 		D2D9A15929C0A610001A8FC3 /* BaseViewProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewProtocol.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -157,6 +157,7 @@
 				D288311A29B225D8007E6D3B /* ViewController.swift */,
 				D288312129B225E0007E6D3B /* LaunchScreen.storyboard */,
 				D29BB50729C098D5008C3178 /* Views */,
+				D29EFD2D29C34C7C00C68D97 /* UserPreferences.swift */,
 			);
 			path = Sofascore;
 			sourceTree = "<group>";
@@ -218,7 +219,6 @@
 				D29BB50829C09ABA008C3178 /* HeaderView.swift */,
 				D2886B9B29C1C7800072C108 /* TabItemView.swift */,
 				D2886B9D29C1D03C0072C108 /* TabView.swift */,
-				D2886B9F29C1EA5D0072C108 /* ContainerView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -366,11 +366,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				D288311B29B225D8007E6D3B /* ViewController.swift in Sources */,
+				D29EFD2E29C34C7C00C68D97 /* UserPreferences.swift in Sources */,
 				D2887E3E29C0D134003AAA5B /* UILabel+AttributesBuilder.swift in Sources */,
 				D2887E4629C0F179003AAA5B /* UIFont+Styles.swift in Sources */,
 				D288311729B225D8007E6D3B /* AppDelegate.swift in Sources */,
 				D2887E4429C0F152003AAA5B /* UIColors+Styles.swift in Sources */,
-				D2886BA029C1EA5D0072C108 /* ContainerView.swift in Sources */,
 				D2886B9C29C1C7800072C108 /* TabItemView.swift in Sources */,
 				D2D9A15A29C0A610001A8FC3 /* BaseView.swift in Sources */,
 				D2887E3829C0D134003AAA5B /* UIView+AttributesBuilder.swift in Sources */,

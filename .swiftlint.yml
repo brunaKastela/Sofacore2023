@@ -1,0 +1,94 @@
+excluded:
+  - Pods
+
+analyzer_rules:
+  - unused_import
+
+disabled_rules: # rule identifiers to exclude from running
+  - line_length
+  - trailing_whitespace
+  - for_where
+  - multiple_closures_with_trailing_closure
+  - no_fallthrough_only
+
+opt_in_rules: # some rules are only opt-in
+  - closure_spacing
+  - operator_usage_whitespace
+  - contains_over_filter_count
+  - contains_over_filter_is_empty
+  - contains_over_first_not_nil
+  - contains_over_range_nil_comparison
+  - empty_count
+  - empty_string
+  - first_where
+  - last_where
+  - sorted_first_last
+
+type_name:
+    max_length: 50
+
+type_body_length:
+    warning: 250
+
+function_body_length:
+    warning: 60
+
+cyclomatic_complexity:
+    warning: 12
+
+file_length:
+    warning: 500
+
+identifier_name:
+  min_length: # only min_length
+    warning: 3 # only warning
+  excluded: # excluded via string array
+    - bag
+    - id
+    - end
+    - key
+    - mac
+    - ses
+    - pub
+    - url
+    - URL
+    - red
+    - hex
+    - day
+    - lhs
+    - rhs
+    - nib
+    - tag
+    - pin
+    - x
+    - y
+    - app
+    - otp
+    - top
+    - min
+    - max
+    - ext
+    - pad
+    - iv
+    - gcm
+    - aes
+    - pan
+    - OTP
+    - CR 
+    - MAC
+    - MAC_NET
+    - OTP_NET
+    - MDS
+    - DFE
+    - up
+    - buy
+    - mid
+    - at
+    - dot
+    - ok
+    - row
+    - sum
+    - map
+    - poi
+    - lbs
+    - tab

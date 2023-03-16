@@ -41,11 +41,9 @@ final class TabItemView: BaseView {
         }
     }
 
-    override func setupGestureRecognizers() {
-    }
-
     func configure(withImage image: UIImage, labelText: String) {
         sportImageView.image = image.withRenderingMode(.alwaysTemplate)
         sportLabelView.text = labelText
     }
+
 }

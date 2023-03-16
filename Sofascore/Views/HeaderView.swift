@@ -5,7 +5,6 @@ final class HeaderView: BaseView {
 
     private let iconLabelImageView = UIImageView()
 
-    // private let choiceStackView = UIStackView()
     private let leagueImageView = UIImageView()
     private let settingsImageView = UIImageView()
 
@@ -24,31 +23,30 @@ final class HeaderView: BaseView {
     }
 
     override func setupConstraints() {
+
         iconLabelImageView.snp.makeConstraints { make in
-            make.verticalEdges.equalToSuperview().inset(14)
+            make.top.equalTo(safeAreaLayoutGuide).inset(14)
+            make.bottom.equalToSuperview().inset(14)
             make.leading.equalToSuperview().inset(16)
         }
 
         leagueImageView.snp.makeConstraints { make in
-            make.verticalEdges.equalToSuperview().inset(12)
-            // make.leading.equalToSuperview().inset(272)
-            // make.trailing.equalToSuperview().inset(64)
-            // make.trailing.equalTo(settingsImageView.snp.leading).offset(24)
+            make.top.equalTo(safeAreaLayoutGuide).inset(12)
+            make.bottom.equalToSuperview().inset(12)
             make.leading.greaterThanOrEqualTo(iconLabelImageView.snp.trailing).offset(24)
             make.size.equalTo(24)
         }
 
         settingsImageView.snp.makeConstraints { make in
-            make.verticalEdges.equalToSuperview().inset(12)
-            // make.leading.equalToSuperview().inset(320)
+            make.top.equalTo(safeAreaLayoutGuide).inset(12)
+            make.bottom.equalToSuperview().inset(12)
             make.trailing.equalToSuperview().inset(16)
             make.leading.equalTo(leagueImageView.snp.trailing).offset(24)
-//            make.trailing.equalToSuperview().inset(16)
             make.size.equalTo(24)
         }
-
     }
 
     override func setupGestureRecognizers() {
     }
+
 }
