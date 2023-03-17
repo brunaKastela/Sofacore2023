@@ -1,10 +1,3 @@
-//
-//  UIFont+Styles.swift
-//  Sofascore
-//
-//  Created by Akademija on 14.03.2023..
-//
-
 import UIKit
 
 extension UIFont {
