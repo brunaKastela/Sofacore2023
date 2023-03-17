@@ -1,10 +1,9 @@
 import UIKit
 import SnapKit
 
-final class HeaderView: BaseView {
+class HeaderView: BaseView {
 
     private let iconLabelImageView = UIImageView()
-
     private let leagueImageView = UIImageView()
     private let settingsImageView = UIImageView()
 
@@ -23,7 +22,6 @@ final class HeaderView: BaseView {
     }
 
     override func setupConstraints() {
-
         iconLabelImageView.snp.makeConstraints { make in
             make.top.equalTo(safeAreaLayoutGuide).inset(14)
             make.bottom.equalToSuperview().inset(14)
@@ -44,9 +42,6 @@ final class HeaderView: BaseView {
             make.leading.equalTo(leagueImageView.snp.trailing).offset(24)
             make.size.equalTo(24)
         }
-    }
-
-    override func setupGestureRecognizers() {
     }
 
 }

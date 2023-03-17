@@ -1,20 +1,23 @@
 import UIKit
 import SnapKit
 
-final class TabItemView: BaseView {
+class TabItemView: BaseView {
+
+    private let model: TabModel
 
     private let sportView = UIStackView()
     private let sportImageView = UIImageView()
     private let sportLabelView = UILabel()
 
-    init(iconImage: UIImage, labelText: String) {
+    init(with model: TabModel) {
+        self.model = model
+
         super.init()
-        configure(withImage: iconImage, labelText: labelText)
     }
 
     override func addViews() {
-        sportView.addArrangedSubviews([sportImageView, sportLabelView])
         addSubview(sportView)
+        sportView.addArrangedSubviews([sportImageView, sportLabelView])
     }
 
     override func styleViews() {
@@ -25,7 +28,10 @@ final class TabItemView: BaseView {
         sportView.distribution = .fillEqually
         sportView.spacing = 4
 
+        sportImageView.image = model.image.withRenderingMode(.alwaysTemplate)
         sportImageView.tintColor(.surfaceSurface1)
+
+        sportLabelView.text = model.title
         sportLabelView.textColor(.surfaceSurface1)
         sportLabelView.font = .tab
     }
@@ -39,11 +45,6 @@ final class TabItemView: BaseView {
         sportImageView.snp.makeConstraints { make in
             make.size.equalTo(16)
         }
-    }
-
-    func configure(withImage image: UIImage, labelText: String) {
-        sportImageView.image = image.withRenderingMode(.alwaysTemplate)
-        sportLabelView.text = labelText
     }
 
 }

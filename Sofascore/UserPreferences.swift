@@ -1,13 +1,12 @@
 import Foundation
 
-enum Preferences {
+enum UserPreferences {
 
     private static let selectedIndexKey = "selectedIndexKey"
 
     static var selectedIndex: Int {
-        get { UserDefaults.standard.integer(forKey: Preferences.selectedIndexKey) }
-        set(newIndex) {
-            UserDefaults.standard.set(newIndex, forKey: Preferences.selectedIndexKey)
-        }
+        get { UserDefaults.standard.integer(forKey: UserPreferences.selectedIndexKey) }
+        set { UserDefaults.standard.set(newValue, forKey: UserPreferences.selectedIndexKey) }
     }
+
 }
