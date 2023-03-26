@@ -2,8 +2,11 @@ import UIKit
 
 class ViewController: UIViewController {
 
+    private let tabModel = ViewModel().tabModel
+
+    let safeAreaView = UIView()
     let headerView = HeaderView()
-    let tabView = TabView()
+    lazy var tabView = TabView(with: tabModel)
     let containerView = UIView()
 
     let firstViewController = UIViewController()
@@ -32,12 +35,15 @@ class ViewController: UIViewController {
 extension ViewController: BaseViewProtocol {
 
     func addViews() {
+        view.addSubview(safeAreaView)
         view.addSubview(headerView)
         view.addSubview(tabView)
         view.addSubview(containerView)
     }
 
     func styleViews() {
+        safeAreaView.backgroundColor = headerView.backgroundColor
+
         firstViewController.view.backgroundColor(.green)
 
         secondViewController.view.backgroundColor(.red)
@@ -46,8 +52,14 @@ extension ViewController: BaseViewProtocol {
     }
 
     func setupConstraints() {
-        headerView.snp.makeConstraints { make in
+        safeAreaView.snp.makeConstraints { make in
             make.top.equalToSuperview()
+            make.horizontalEdges.equalToSuperview()
+            make.bottom.equalTo(view.safeAreaLayoutGuide.snp.top)
+        }
+        
+        headerView.snp.makeConstraints { make in
+            make.top.equalTo(view.safeAreaLayoutGuide)
             make.leading.trailing.equalToSuperview()
         }
 
@@ -67,19 +79,37 @@ extension ViewController: BaseViewProtocol {
 extension ViewController: TabItemViewDelegate {
 
     func tabItemViewTapped(_ tabIndex: Int) {
+        guard tabIndex < viewControllers.count else {return}
+
         UserPreferences.selectedIndex = tabIndex
         let selectedViewController = viewControllers[UserPreferences.selectedIndex]
 
+        removeChildren()
+
+        addAnimation(selectedViewController)
+
+        addChilViewController(selectedViewController)
+
+        tabView.updateBarPosition(index: UserPreferences.selectedIndex)
+    }
+
+    func removeChildren() {
         containerView.subviews.forEach { $0.removeFromSuperview() }
         children.forEach { $0.removeFromParent() }
+    }
 
+    func addAnimation(_ selectedViewController: UIViewController) {
         let animation: CATransition = CATransition()
+
         animation.duration = 0.3
         animation.type = .push
         animation.subtype = .fromRight
         animation.timingFunction = CAMediaTimingFunction(name: .easeOut)
-        selectedViewController.view.layer.add(animation, forKey: "viewControllerTransition")
 
+        selectedViewController.view.layer.add(animation, forKey: "viewControllerTransition")
+    }
+
+    func addChilViewController(_ selectedViewController: UIViewController) {
         containerView.addSubview(selectedViewController.view)
         addChild(selectedViewController)
         selectedViewController.didMove(toParent: self)
@@ -87,8 +117,6 @@ extension ViewController: TabItemViewDelegate {
         selectedViewController.view.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
-
-        tabView.updateBarPosition(index: UserPreferences.selectedIndex)
     }
 
 }

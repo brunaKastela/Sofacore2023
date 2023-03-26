@@ -5,9 +5,9 @@ class TabItemView: BaseView {
 
     private let model: TabModel
 
-    private let sportView = UIStackView()
-    private let sportImageView = UIImageView()
-    private let sportLabelView = UILabel()
+    private let stackView = UIStackView()
+    private let imageView = UIImageView()
+    private let labelView = UILabel()
 
     init(with model: TabModel) {
         self.model = model
@@ -16,33 +16,33 @@ class TabItemView: BaseView {
     }
 
     override func addViews() {
-        addSubview(sportView)
-        sportView.addArrangedSubviews([sportImageView, sportLabelView])
+        addSubview(stackView)
+        stackView.addArrangedSubviews([imageView, labelView])
     }
 
     override func styleViews() {
         backgroundColor = .colorPrimaryDefault
 
-        sportView.axis = .vertical
-        sportView.alignment = .center
-        sportView.distribution = .fillEqually
-        sportView.spacing = 4
+        stackView.axis = .vertical
+        stackView.alignment = .center
+        stackView.distribution = .fillEqually
+        stackView.spacing = 4
 
-        sportImageView.image = model.image.withRenderingMode(.alwaysTemplate)
-        sportImageView.tintColor(.surfaceSurface1)
+        imageView.image = model.image.withRenderingMode(.alwaysTemplate)
+        imageView.tintColor(.surfaceSurface1)
 
-        sportLabelView.text = model.title
-        sportLabelView.textColor(.surfaceSurface1)
-        sportLabelView.font = .tab
+        labelView.text = model.title
+        labelView.textColor(.surfaceSurface1)
+        labelView.font = .tab
     }
 
     override func setupConstraints() {
-        sportView.snp.makeConstraints { make in
+        stackView.snp.makeConstraints { make in
             make.verticalEdges.equalToSuperview().inset(8)
             make.horizontalEdges.equalToSuperview()
         }
 
-        sportImageView.snp.makeConstraints { make in
+        imageView.snp.makeConstraints { make in
             make.size.equalTo(16)
         }
     }

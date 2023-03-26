@@ -10,22 +10,33 @@ protocol TabItemViewDelegate: AnyObject {
 class TabView: BaseView {
 
     private enum Constants {
-        static let selectorBarWidth: CGFloat = 104
+
+        static let selectorBarWidthPercentage = 0.86
+
         static let animationDuration = 0.25
+
     }
 
+    lazy var selectorBarWidth: CGFloat = calculateBarWidth()
     weak var delegate: TabItemViewDelegate?
 
     private let tabStackView = UIStackView()
-    private let footballTabView = TabItemView(with: TabModel(image: .footballIcon, title: .localized(.football)))
-    private let basketBallTabView = TabItemView(with: TabModel(image: .basketballIcon, title: .localized(.basketball)))
-    private let amFootballTabView = TabItemView(with: TabModel(image: .amFootballIcon, title: .localized(.amFootball)))
+    private let tabModel: [TabModel]
+
     private let selectorBarView = UIView()
     private let selectorBar = UIView()
 
+    init(with model: [TabModel]) {
+        self.tabModel = model
+
+        super.init()
+    }
+
     override func addViews() {
         addSubview(tabStackView)
-        tabStackView.addArrangedSubviews([footballTabView, basketBallTabView, amFootballTabView])
+        for model in tabModel {
+            tabStackView.addArrangedSubviews(TabItemView(with: model))
+        }
 
         addSubview(selectorBarView)
 
@@ -60,7 +71,7 @@ class TabView: BaseView {
             make.bottom.equalToSuperview().inset(0)
             make.leading.equalToSuperview()
             make.trailing.lessThanOrEqualToSuperview()
-            make.width.equalTo(Constants.selectorBarWidth)
+            make.width.equalTo(selectorBarWidth)
             make.height.equalTo(4)
         }
     }
@@ -82,11 +93,17 @@ class TabView: BaseView {
 
     func updateBarPosition(index: Int) {
         let tabItemWidth = UIScreen.main.bounds.width / CGFloat(tabStackView.arrangedSubviews.count)
-        let selectorPosition = CGFloat(index) * tabItemWidth + (tabItemWidth - Constants.selectorBarWidth) / 2
+        let selectorPosition = CGFloat(index) * tabItemWidth + (tabItemWidth - selectorBarWidth) / 2
 
         UIView.animate(withDuration: Constants.animationDuration) {
             self.selectorBar.transform = CGAffineTransform(translationX: selectorPosition, y: 0)
         }
+    }
+
+    func calculateBarWidth() -> CGFloat {
+        let tabItemWidth = UIScreen.main.bounds.width / CGFloat(tabStackView.arrangedSubviews.count)
+
+        return tabItemWidth * Constants.selectorBarWidthPercentage
     }
 
 }
