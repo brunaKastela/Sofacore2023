@@ -25,4 +25,20 @@ extension UIImage {
     static var amFootballIcon: UIImage {
         UIImage(named: "icon_american_football")!
     }
+
+    static var realMadridIcon: UIImage {
+        UIImage(named: "icon_real_madrid")!
+    }
+
+    static var atlMadridIcon: UIImage {
+        UIImage(named: "icon_atl_madrid")!
+    }
+
+    static var barcelonaIcon: UIImage {
+        UIImage(named: "icon_barcelona")!
+    }
+
+    static var realSociedadIcon: UIImage {
+        UIImage(named: "icon_real_sociedad")!
+    }
 }
