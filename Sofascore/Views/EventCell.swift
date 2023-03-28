@@ -60,12 +60,10 @@ class EventCell: BaseView {
         timeView.alignment = .center
         timeView.distribution = .fillEqually
         timeView.spacing = 4
-        timeView.backgroundColor = .white // maknut kasnije
 
-        startTimeLabel.text = "13:00"
+        startTimeLabel.text = model.formattedStartTime()
         startTimeLabel.textColor(.onSurfaceOnSurfaceLv2).font(.micro)
 
-        endTimeLabel.text = "FT"
         endTimeLabel.textColor(.onSurfaceOnSurfaceLv2).font(.micro)
 
         dividerView.backgroundColor(.onSurfaceOnSurfaceLv4)
@@ -96,8 +94,8 @@ class EventCell: BaseView {
         scoreView.distribution = .fill
         scoreView.spacing = 4
 
-        homeTeamScore.text(String(model.homeTeamScore)).font(.bodyParagraph)
-        awayTeamScore.text(String(model.awayTeamScore)).font(.bodyParagraph)
+        homeTeamScore.font(.bodyParagraph)
+        awayTeamScore.font(.bodyParagraph)
 
         configureStyleByScore()
     }
@@ -140,7 +138,71 @@ class EventCell: BaseView {
     }
 
     func configureStyleByScore() {
-        
+        if !model.hasStarted() {
+            setToStart()
+        } else if let minutes = model.currentMinute {
+            setLiveHighlight(for: minutes)
+        } else {
+            setFinished()
+        }
+    }
+
+    func setLiveHighlight(for minutes: Int) {
+        setScore()
+
+        endTimeLabel.text = "\(minutes)'"
+        endTimeLabel.textColor(.specificLive)
+
+        setHighlight(homeTeamLabel, homeTeamScore)
+        setHighlight(awayTeamLabel, awayTeamScore)
+
+        homeTeamScore.textColor(.specificLive)
+        awayTeamScore.textColor(.specificLive)
+    }
+
+    func setToStart() {
+        endTimeLabel.text(Constants.upcomingGameLabel)
+
+        setHighlight(homeTeamLabel, homeTeamScore)
+        setHighlight(awayTeamLabel, awayTeamScore)
+    }
+
+    func setFinished() {
+        endTimeLabel.text(Constants.finishedGameLabel)
+
+        setScore()
+
+        switch (model.homeTeamScore, model.awayTeamScore) {
+        case (let x?, let y?) where x == y:
+            removeHighlight(homeTeamLabel, homeTeamScore)
+            removeHighlight(awayTeamLabel, awayTeamScore)
+        case (let x?, let y?) where x > y:
+            setHighlight(homeTeamLabel, homeTeamScore)
+            removeHighlight(awayTeamLabel, awayTeamScore)
+        case (let x?, let y?) where x < y:
+            removeHighlight(homeTeamLabel, homeTeamScore)
+            setHighlight(awayTeamLabel, awayTeamScore)
+        default:
+            setHighlight(homeTeamLabel, homeTeamScore)
+            setHighlight(awayTeamLabel, awayTeamScore)
+        }
+    }
+
+    func setScore() {
+        if let home = model.homeTeamScore, let away = model.awayTeamScore {
+            homeTeamScore.text = String(home)
+            awayTeamScore.text = String(away)
+        }
+    }
+
+    func setHighlight(_ label: UILabel, _ score: UILabel) {
+        label.textColor(.onSurfaceOnSurfaceLv1)
+        score.textColor(.onSurfaceOnSurfaceLv1)
+    }
+
+    func removeHighlight(_ label: UILabel, _ score: UILabel) {
+        label.textColor(.onSurfaceOnSurfaceLv2)
+        score.textColor(.onSurfaceOnSurfaceLv2)
     }
 
 }
