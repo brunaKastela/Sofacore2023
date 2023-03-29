@@ -1,9 +1,7 @@
 import UIKit
 import SnapKit
 
-class EventCell: BaseView {
-
-    private var model: EventModel
+class EventCell: UITableViewCell, Reusable {
 
     private let timeView = UIStackView()
     private let startTimeLabel = UILabel()
@@ -28,17 +26,43 @@ class EventCell: BaseView {
     private enum Constants {
 
         static let finishedGameLabel = "FT"
-
         static let upcomingGameLabel = "-"
+
     }
 
-    init(with model: EventModel) {
-        self.model = model
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
 
-        super.init()
+        addViews()
+        styleViews()
+        setupConstraints()
     }
 
-    open override func addViews() {
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
+    override func prepareForReuse() {
+        super.prepareForReuse()
+
+        startTimeLabel.text("")
+        endTimeLabel.text("")
+
+        homeTeamIcon.image = nil
+        awayTeamIcon.image = nil
+
+        homeTeamLabel.text("")
+        awayTeamLabel.text("")
+
+        homeTeamScore.text("")
+        awayTeamScore.text("")
+    }
+
+}
+
+extension EventCell: BaseViewProtocol {
+
+    func addViews() {
         addSubview(timeView)
 
         timeView.addArrangedSubviews([startTimeLabel, endTimeLabel])
@@ -48,29 +72,29 @@ class EventCell: BaseView {
         addSubview(participantView)
 
         participantView.addArrangedSubviews([homeTeamView, awayTeamView])
+
         homeTeamView.addArrangedSubviews([homeTeamIcon, homeTeamLabel])
         awayTeamView.addArrangedSubviews([awayTeamIcon, awayTeamLabel])
 
         addSubview(scoreView)
+
         scoreView.addArrangedSubviews([homeTeamScore, awayTeamScore])
     }
 
-    open override func styleViews() {
+    func styleViews() {
         timeView.axis = .vertical
         timeView.alignment = .center
         timeView.distribution = .fillEqually
         timeView.spacing = 4
 
-        startTimeLabel.text = model.formattedStartTime()
         startTimeLabel.textColor(.onSurfaceOnSurfaceLv2).font(.micro)
-
-        endTimeLabel.textColor(.onSurfaceOnSurfaceLv2).font(.micro)
+        endTimeLabel.font(.micro)
 
         dividerView.backgroundColor(.onSurfaceOnSurfaceLv4)
 
         participantView.axis = .vertical
         participantView.alignment = .leading
-        participantView.distribution = .fillEqually
+        participantView.distribution = .fill
         participantView.spacing = 4
 
         homeTeamView.axis = .horizontal
@@ -78,16 +102,14 @@ class EventCell: BaseView {
         homeTeamView.distribution = .fill
         homeTeamView.spacing = 8
 
-        homeTeamLabel.text(model.homeTeam).font(.bodyParagraph)
-        homeTeamIcon.image = model.homeTeamIcon
+        homeTeamLabel.font(.bodyParagraph)
 
         awayTeamView.axis = .horizontal
         awayTeamView.alignment = .center
         awayTeamView.distribution = .fill
         awayTeamView.spacing = 8
 
-        awayTeamLabel.text(model.awayTeam).font(.bodyParagraph)
-        awayTeamIcon.image = model.awayTeamIcon
+        awayTeamLabel.font(.bodyParagraph)
 
         scoreView.axis = .vertical
         scoreView.alignment = .center
@@ -96,11 +118,9 @@ class EventCell: BaseView {
 
         homeTeamScore.font(.bodyParagraph)
         awayTeamScore.font(.bodyParagraph)
-
-        configureStyleByScore()
     }
 
-    open override func setupConstraints() {
+    func setupConstraints() {
         timeView.snp.makeConstraints { make in
             make.verticalEdges.equalToSuperview().inset(10)
             make.leading.equalToSuperview().inset(4)
@@ -133,22 +153,46 @@ class EventCell: BaseView {
         }
     }
 
-    open override func setupGestureRecognizers() {
+    func setupGestureRecognizers() {
         // Default implementation is empty
     }
 
-    func configureStyleByScore() {
-        if !model.hasStarted() {
-            setToStart()
+}
+
+extension EventCell {
+
+    func configure(with model: Any) {
+        guard let model = model as? EventModel else { return }
+
+        configureEventCell(with: model)
+    }
+
+}
+
+extension EventCell {
+
+    func configureEventCell(with model: EventModel) {
+        setProperties(of: model)
+
+        if !model.hasStarted {
+            setNotStarted()
         } else if let minutes = model.currentMinute {
-            setLiveHighlight(for: minutes)
+            setLive(of: model, for: minutes)
         } else {
-            setFinished()
+            setFinished(of: model)
         }
     }
 
-    func setLiveHighlight(for minutes: Int) {
-        setScore()
+    func setProperties(of model: EventModel) {
+        startTimeLabel.text = model.formattedStartTime
+        homeTeamLabel.text(model.homeTeam)
+        awayTeamLabel.text(model.awayTeam)
+        homeTeamIcon.image = model.homeTeamIcon
+        awayTeamIcon.image = model.awayTeamIcon
+    }
+
+    func setLive(of model: EventModel, for minutes: Int) {
+        setScore(of: model)
 
         endTimeLabel.text = "\(minutes)'"
         endTimeLabel.textColor(.specificLive)
@@ -160,17 +204,17 @@ class EventCell: BaseView {
         awayTeamScore.textColor(.specificLive)
     }
 
-    func setToStart() {
-        endTimeLabel.text(Constants.upcomingGameLabel)
+    func setNotStarted() {
+        endTimeLabel.text(Constants.upcomingGameLabel).textColor(.onSurfaceOnSurfaceLv2)
 
         setHighlight(homeTeamLabel, homeTeamScore)
         setHighlight(awayTeamLabel, awayTeamScore)
     }
 
-    func setFinished() {
-        endTimeLabel.text(Constants.finishedGameLabel)
+    func setFinished(of model: EventModel) {
+        endTimeLabel.text(Constants.finishedGameLabel).textColor(.onSurfaceOnSurfaceLv2)
 
-        setScore()
+        setScore(of: model)
 
         switch (model.homeTeamScore, model.awayTeamScore) {
         case (let x?, let y?) where x == y:
@@ -188,7 +232,7 @@ class EventCell: BaseView {
         }
     }
 
-    func setScore() {
+    func setScore(of model: EventModel) {
         if let home = model.homeTeamScore, let away = model.awayTeamScore {
             homeTeamScore.text = String(home)
             awayTeamScore.text = String(away)

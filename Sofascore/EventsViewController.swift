@@ -2,18 +2,9 @@ import UIKit
 
 class EventsViewController: UIViewController {
 
-    private let eventModel1 = ViewModel().eventModel1
-    private let eventModel2 = ViewModel().eventModel2
-    private let eventModel3 = ViewModel().eventModel3
-    private let eventModel4 = ViewModel().eventModel4
-    private let eventModel5 = ViewModel().eventModel5
+    private var eventModel = ViewModel().eventModel
 
-    // napraviti da prima model utakmica i radi polje eventova, za svaki radi vieq
-    lazy var eventView1 = EventCell(with: eventModel1)
-    lazy var eventView2 = EventCell(with: eventModel2)
-    lazy var eventView3 = EventCell(with: eventModel3)
-    lazy var eventView4 = EventCell(with: eventModel4)
-    lazy var eventView5 = EventCell(with: eventModel5)
+    private let tableView = UITableView()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,37 +19,43 @@ class EventsViewController: UIViewController {
 extension EventsViewController: BaseViewProtocol {
 
     func addViews() {
-        view.addSubview(eventView1)
-        view.addSubview(eventView2)
-        view.addSubview(eventView3)
-        view.addSubview(eventView4)
-        view.addSubview(eventView5)
+        view.addSubview(tableView)
     }
 
     func styleViews() {
+        tableView.register(EventCell.self, forCellReuseIdentifier: EventCell.identifier)
+        tableView.dataSource = self
+        tableView.estimatedRowHeight = UITableView.automaticDimension
+        tableView.separatorStyle = .none
     }
 
     func setupConstraints() {
-        eventView1.snp.makeConstraints { make in
-            make.horizontalEdges.equalToSuperview()
-            make.top.equalToSuperview()
+        tableView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
         }
-        eventView2.snp.makeConstraints { make in
-            make.top.equalTo(eventView1.snp.bottom)
-            make.horizontalEdges.equalToSuperview()
+    }
+
+}
+
+extension EventsViewController: UITableViewDataSource {
+
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        eventModel.count
+    }
+
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: EventCell.identifier) as? EventCell
+        else {
+            return UITableViewCell()
         }
-        eventView3.snp.makeConstraints { make in
-            make.top.equalTo(eventView2.snp.bottom)
-            make.horizontalEdges.equalToSuperview()
+
+        let index = indexPath.row
+
+        if index >= 0 && index < eventModel.count {
+            cell.configure(with: eventModel[indexPath.row])
         }
-        eventView4.snp.makeConstraints { make in
-            make.top.equalTo(eventView3.snp.bottom)
-            make.horizontalEdges.equalToSuperview()
-        }
-        eventView5.snp.makeConstraints { make in
-            make.top.equalTo(eventView4.snp.bottom)
-            make.horizontalEdges.equalToSuperview()
-        }
+
+        return cell
     }
 
 }

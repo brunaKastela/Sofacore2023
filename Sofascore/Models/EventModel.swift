@@ -14,15 +14,18 @@ struct EventModel {
     let awayTeam: String
     var awayTeamScore: Int?
 
-    func formattedStartTime() -> String? {
-        if let hour = startTime.hour, let minute = startTime.minute {
-            return String(hour) + ":" + String(format: "%02d", minute)
-        } else {
+    var formattedStartTime: String? {
+        guard
+            let hour = startTime.hour,
+            let minute = startTime.minute
+        else {
             return nil
         }
+
+        return String(hour) + ":" + String(format: "%02d", minute)
     }
 
-    func hasStarted() -> Bool {
+    var hasStarted: Bool {
         let now = Date()
 
         let startDateTime = Calendar.current.date(
