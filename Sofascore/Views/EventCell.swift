@@ -3,23 +3,23 @@ import SnapKit
 
 class EventCell: UITableViewCell, Reusable {
 
-    private let timeView = UIStackView()
+    private let timeStack = UIStackView()
     private let startTimeLabel = UILabel()
     private let endTimeLabel = UILabel()
 
     private let dividerView = UIView()
 
-    private let participantView = UIStackView()
+    private let participantStack = UIStackView()
 
-    private let homeTeamView = UIStackView()
+    private let homeTeamStack = UIStackView()
     private let homeTeamIcon = UIImageView()
     private let homeTeamLabel = UILabel()
 
-    private let awayTeamView = UIStackView()
+    private let awayTeamStack = UIStackView()
     private let awayTeamIcon = UIImageView()
     private let awayTeamLabel = UILabel()
 
-    private let scoreView = UIStackView()
+    private let scoreStack = UIStackView()
     private let homeTeamScore = UILabel()
     private let awayTeamScore = UILabel()
 
@@ -63,65 +63,65 @@ class EventCell: UITableViewCell, Reusable {
 extension EventCell: BaseViewProtocol {
 
     func addViews() {
-        addSubview(timeView)
+        addSubview(timeStack)
 
-        timeView.addArrangedSubviews([startTimeLabel, endTimeLabel])
+        timeStack.addArrangedSubviews([startTimeLabel, endTimeLabel])
 
         addSubview(dividerView)
 
-        addSubview(participantView)
+        addSubview(participantStack)
 
-        participantView.addArrangedSubviews([homeTeamView, awayTeamView])
+        participantStack.addArrangedSubviews([homeTeamStack, awayTeamStack])
 
-        homeTeamView.addArrangedSubviews([homeTeamIcon, homeTeamLabel])
-        awayTeamView.addArrangedSubviews([awayTeamIcon, awayTeamLabel])
+        homeTeamStack.addArrangedSubviews([homeTeamIcon, homeTeamLabel])
+        awayTeamStack.addArrangedSubviews([awayTeamIcon, awayTeamLabel])
 
-        addSubview(scoreView)
+        addSubview(scoreStack)
 
-        scoreView.addArrangedSubviews([homeTeamScore, awayTeamScore])
+        scoreStack.addArrangedSubviews([homeTeamScore, awayTeamScore])
     }
 
     func styleViews() {
-        timeView.axis = .vertical
-        timeView.alignment = .center
-        timeView.distribution = .fillEqually
-        timeView.spacing = 4
+        timeStack.axis = .vertical
+        timeStack.alignment = .center
+        timeStack.distribution = .fillEqually
+        timeStack.spacing = 4
 
         startTimeLabel.textColor(.onSurfaceOnSurfaceLv2).font(.micro)
         endTimeLabel.font(.micro)
 
         dividerView.backgroundColor(.onSurfaceOnSurfaceLv4)
 
-        participantView.axis = .vertical
-        participantView.alignment = .leading
-        participantView.distribution = .fill
-        participantView.spacing = 4
+        participantStack.axis = .vertical
+        participantStack.alignment = .leading
+        participantStack.distribution = .fill
+        participantStack.spacing = 4
 
-        homeTeamView.axis = .horizontal
-        homeTeamView.alignment = .center
-        homeTeamView.distribution = .fill
-        homeTeamView.spacing = 8
+        homeTeamStack.axis = .horizontal
+        homeTeamStack.alignment = .center
+        homeTeamStack.distribution = .fill
+        homeTeamStack.spacing = 8
 
         homeTeamLabel.font(.bodyParagraph)
 
-        awayTeamView.axis = .horizontal
-        awayTeamView.alignment = .center
-        awayTeamView.distribution = .fill
-        awayTeamView.spacing = 8
+        awayTeamStack.axis = .horizontal
+        awayTeamStack.alignment = .center
+        awayTeamStack.distribution = .fill
+        awayTeamStack.spacing = 8
 
         awayTeamLabel.font(.bodyParagraph)
 
-        scoreView.axis = .vertical
-        scoreView.alignment = .center
-        scoreView.distribution = .fill
-        scoreView.spacing = 4
+        scoreStack.axis = .vertical
+        scoreStack.alignment = .center
+        scoreStack.distribution = .fill
+        scoreStack.spacing = 4
 
         homeTeamScore.font(.bodyParagraph)
         awayTeamScore.font(.bodyParagraph)
     }
 
     func setupConstraints() {
-        timeView.snp.makeConstraints { make in
+        timeStack.snp.makeConstraints { make in
             make.verticalEdges.equalToSuperview().inset(10)
             make.leading.equalToSuperview().inset(4)
             make.width.equalTo(56)
@@ -129,11 +129,11 @@ extension EventCell: BaseViewProtocol {
 
         dividerView.snp.makeConstraints { make in
             make.width.equalTo(1)
-            make.leading.equalTo(timeView.snp.trailing).offset(3)
+            make.leading.equalTo(timeStack.snp.trailing).offset(3)
             make.verticalEdges.equalToSuperview().inset(8)
         }
 
-        participantView.snp.makeConstraints { make in
+        participantStack.snp.makeConstraints { make in
             make.leading.equalTo(dividerView.snp.trailing).offset(16)
             make.verticalEdges.equalToSuperview().inset(10)
         }
@@ -146,8 +146,8 @@ extension EventCell: BaseViewProtocol {
             make.size.equalTo(16)
         }
 
-        scoreView.snp.makeConstraints { make in
-            make.leading.greaterThanOrEqualTo(participantView.snp.trailing).offset(24)
+        scoreStack.snp.makeConstraints { make in
+            make.leading.greaterThanOrEqualTo(participantStack.snp.trailing).offset(24)
             make.verticalEdges.equalToSuperview().inset(10)
             make.trailing.equalToSuperview().inset(16)
         }
