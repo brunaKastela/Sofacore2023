@@ -5,23 +5,14 @@ class EventCell: UITableViewCell, Reusable {
 
     private let timeStack = UIStackView()
     private let startTimeLabel = UILabel()
-    private let endTimeLabel = UILabel()
+    private let eventStatusLabel = UILabel()
 
     private let dividerView = UIView()
 
     private let participantStack = UIStackView()
 
-    private let homeTeamStack = UIStackView()
-    private let homeTeamIcon = UIImageView()
-    private let homeTeamLabel = UILabel()
-
-    private let awayTeamStack = UIStackView()
-    private let awayTeamIcon = UIImageView()
-    private let awayTeamLabel = UILabel()
-
-    private let scoreStack = UIStackView()
-    private let homeTeamScore = UILabel()
-    private let awayTeamScore = UILabel()
+    private let homeTeamView = TeamView()
+    private let awayTeamView = TeamView()
 
     private enum Constants {
 
@@ -46,16 +37,16 @@ class EventCell: UITableViewCell, Reusable {
         super.prepareForReuse()
 
         startTimeLabel.text("")
-        endTimeLabel.text("")
+        eventStatusLabel.text("")
 
-        homeTeamIcon.image = nil
-        awayTeamIcon.image = nil
+        homeTeamView.teamIcon.image = nil
+        awayTeamView.teamIcon.image = nil
 
-        homeTeamLabel.text("")
-        awayTeamLabel.text("")
+        homeTeamView.teamLabel.text = ""
+        awayTeamView.teamLabel.text = ""
 
-        homeTeamScore.text("")
-        awayTeamScore.text("")
+        homeTeamView.teamScoreLabel.text("")
+        homeTeamView.teamScoreLabel.text("")
     }
 
 }
@@ -65,20 +56,13 @@ extension EventCell: BaseViewProtocol {
     func addViews() {
         addSubview(timeStack)
 
-        timeStack.addArrangedSubviews([startTimeLabel, endTimeLabel])
+        timeStack.addArrangedSubviews([startTimeLabel, eventStatusLabel])
 
         addSubview(dividerView)
 
         addSubview(participantStack)
 
-        participantStack.addArrangedSubviews([homeTeamStack, awayTeamStack])
-
-        homeTeamStack.addArrangedSubviews([homeTeamIcon, homeTeamLabel])
-        awayTeamStack.addArrangedSubviews([awayTeamIcon, awayTeamLabel])
-
-        addSubview(scoreStack)
-
-        scoreStack.addArrangedSubviews([homeTeamScore, awayTeamScore])
+        participantStack.addArrangedSubviews([homeTeamView, awayTeamView])
     }
 
     func styleViews() {
@@ -88,36 +72,13 @@ extension EventCell: BaseViewProtocol {
         timeStack.spacing = 4
 
         startTimeLabel.textColor(.onSurfaceOnSurfaceLv2).font(.micro)
-        endTimeLabel.font(.micro)
+        eventStatusLabel.font(.micro)
 
         dividerView.backgroundColor(.onSurfaceOnSurfaceLv4)
 
         participantStack.axis = .vertical
-        participantStack.alignment = .leading
         participantStack.distribution = .fill
         participantStack.spacing = 4
-
-        homeTeamStack.axis = .horizontal
-        homeTeamStack.alignment = .center
-        homeTeamStack.distribution = .fill
-        homeTeamStack.spacing = 8
-
-        homeTeamLabel.font(.bodyParagraph)
-
-        awayTeamStack.axis = .horizontal
-        awayTeamStack.alignment = .center
-        awayTeamStack.distribution = .fill
-        awayTeamStack.spacing = 8
-
-        awayTeamLabel.font(.bodyParagraph)
-
-        scoreStack.axis = .vertical
-        scoreStack.alignment = .center
-        scoreStack.distribution = .fill
-        scoreStack.spacing = 4
-
-        homeTeamScore.font(.bodyParagraph)
-        awayTeamScore.font(.bodyParagraph)
     }
 
     func setupConstraints() {
@@ -136,19 +97,6 @@ extension EventCell: BaseViewProtocol {
         participantStack.snp.makeConstraints { make in
             make.leading.equalTo(dividerView.snp.trailing).offset(16)
             make.verticalEdges.equalToSuperview().inset(10)
-        }
-
-        homeTeamIcon.snp.makeConstraints { make in
-            make.size.equalTo(16)
-        }
-
-        awayTeamIcon.snp.makeConstraints { make in
-            make.size.equalTo(16)
-        }
-
-        scoreStack.snp.makeConstraints { make in
-            make.leading.greaterThanOrEqualTo(participantStack.snp.trailing).offset(24)
-            make.verticalEdges.equalToSuperview().inset(10)
             make.trailing.equalToSuperview().inset(16)
         }
     }
@@ -161,92 +109,32 @@ extension EventCell: BaseViewProtocol {
 
 extension EventCell {
 
-    func configure(with model: Any) {
-        guard let model = model as? EventModel else { return }
-
-        configureEventCell(with: model)
+    func configureEventCell(with model: EventCellModel) {
+        setProperties(with: model)
+        setColors(with: model)
     }
 
-}
+    func setProperties(with model: EventCellModel) {
+        startTimeLabel.text = model.startTime
+        eventStatusLabel.text = model.eventStatus
 
-extension EventCell {
+        homeTeamView.teamIcon.image = model.homeTeam.teamIcon
+        homeTeamView.teamLabel.text = model.homeTeam.teamName
+        homeTeamView.teamScoreLabel.text = model.homeTeam.teamScore
 
-    func configureEventCell(with model: EventModel) {
-        setProperties(of: model)
-
-        if !model.hasStarted {
-            setNotStarted()
-        } else if let minutes = model.currentMinute {
-            setLive(of: model, for: minutes)
-        } else {
-            setFinished(of: model)
-        }
+        awayTeamView.teamIcon.image = model.awayTeam.teamIcon
+        awayTeamView.teamLabel.text = model.awayTeam.teamName
+        awayTeamView.teamScoreLabel.text = model.awayTeam.teamScore
     }
 
-    func setProperties(of model: EventModel) {
-        startTimeLabel.text = model.formattedStartTime
-        homeTeamLabel.text(model.homeTeam)
-        awayTeamLabel.text(model.awayTeam)
-        homeTeamIcon.image = model.homeTeamIcon
-        awayTeamIcon.image = model.awayTeamIcon
-    }
+    func setColors(with model: EventCellModel) {
+        eventStatusLabel.textColor = model.eventStatusColor
 
-    func setLive(of model: EventModel, for minutes: Int) {
-        setScore(of: model)
+        homeTeamView.teamLabel.textColor = model.homeTeam.teamNameColor
+        homeTeamView.teamScoreLabel.textColor = model.homeTeam.teamScoreColor
 
-        endTimeLabel.text = "\(minutes)'"
-        endTimeLabel.textColor(.specificLive)
-
-        setHighlight(homeTeamLabel, homeTeamScore)
-        setHighlight(awayTeamLabel, awayTeamScore)
-
-        homeTeamScore.textColor(.specificLive)
-        awayTeamScore.textColor(.specificLive)
-    }
-
-    func setNotStarted() {
-        endTimeLabel.text(Constants.upcomingGameLabel).textColor(.onSurfaceOnSurfaceLv2)
-
-        setHighlight(homeTeamLabel, homeTeamScore)
-        setHighlight(awayTeamLabel, awayTeamScore)
-    }
-
-    func setFinished(of model: EventModel) {
-        endTimeLabel.text(Constants.finishedGameLabel).textColor(.onSurfaceOnSurfaceLv2)
-
-        setScore(of: model)
-
-        switch (model.homeTeamScore, model.awayTeamScore) {
-        case (let x?, let y?) where x == y:
-            removeHighlight(homeTeamLabel, homeTeamScore)
-            removeHighlight(awayTeamLabel, awayTeamScore)
-        case (let x?, let y?) where x > y:
-            setHighlight(homeTeamLabel, homeTeamScore)
-            removeHighlight(awayTeamLabel, awayTeamScore)
-        case (let x?, let y?) where x < y:
-            removeHighlight(homeTeamLabel, homeTeamScore)
-            setHighlight(awayTeamLabel, awayTeamScore)
-        default:
-            setHighlight(homeTeamLabel, homeTeamScore)
-            setHighlight(awayTeamLabel, awayTeamScore)
-        }
-    }
-
-    func setScore(of model: EventModel) {
-        if let home = model.homeTeamScore, let away = model.awayTeamScore {
-            homeTeamScore.text = String(home)
-            awayTeamScore.text = String(away)
-        }
-    }
-
-    func setHighlight(_ label: UILabel, _ score: UILabel) {
-        label.textColor(.onSurfaceOnSurfaceLv1)
-        score.textColor(.onSurfaceOnSurfaceLv1)
-    }
-
-    func removeHighlight(_ label: UILabel, _ score: UILabel) {
-        label.textColor(.onSurfaceOnSurfaceLv2)
-        score.textColor(.onSurfaceOnSurfaceLv2)
+        awayTeamView.teamLabel.textColor = model.awayTeam.teamNameColor
+        awayTeamView.teamScoreLabel.textColor = model.awayTeam.teamScoreColor
     }
 
 }

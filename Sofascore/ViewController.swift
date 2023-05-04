@@ -2,7 +2,10 @@ import UIKit
 
 class ViewController: UIViewController {
 
-    private let tabModel = ViewModel().tabModel
+    let tabModel = [
+        TabModel(image: .footballIcon, title: .localized(.football)),
+        TabModel(image: .basketballIcon, title: .localized(.basketball)),
+        TabModel(image: .amFootballIcon, title: .localized(.amFootball))]
 
     let safeAreaView = UIView()
     let headerView = HeaderView()

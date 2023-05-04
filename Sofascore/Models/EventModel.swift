@@ -4,7 +4,7 @@ struct EventModel {
 
     let startDate: Date
     let startTime: DateComponents
-    var currentMinute: Int?
+    let eventState: EventStates
 
     let homeTeamIcon: UIImage
     let homeTeam: String
@@ -14,28 +14,15 @@ struct EventModel {
     let awayTeam: String
     var awayTeamScore: Int?
 
-    var formattedStartTime: String? {
-        guard
-            let hour = startTime.hour,
-            let minute = startTime.minute
-        else {
-            return nil
-        }
+}
 
-        return String(hour) + ":" + String(format: "%02d", minute)
-    }
+struct EventCellModel {
 
-    var hasStarted: Bool {
-        let now = Date()
+    let startTime: String
+    let eventStatus: String
+    let eventStatusColor: UIColor
 
-        let startDateTime = Calendar.current.date(
-            bySettingHour: startTime.hour ?? 0,
-            minute: startTime.minute ?? 0,
-            second: 0,
-            of: startDate)
-        ?? Date.distantPast
-
-        return now >= startDateTime
-    }
+    let homeTeam: TeamModel
+    let awayTeam: TeamModel
 
 }

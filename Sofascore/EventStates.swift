@@ -1,6 +1,7 @@
 enum EventStates: String {
 
-    case live
+    case inProgress
     case upcoming
     case finished
+
 }
