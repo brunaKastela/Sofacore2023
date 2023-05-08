@@ -18,6 +18,8 @@ class ViewController: UIViewController {
 
     lazy var viewControllers = [firstViewController, secondViewController, thirdViewController]
 
+    let weatherViewController = WeatherViewController()
+
     override var preferredStatusBarStyle: UIStatusBarStyle {
         .lightContent
     }
@@ -29,6 +31,7 @@ class ViewController: UIViewController {
         styleViews()
         setupConstraints()
 
+        headerView.delegate = self
         tabView.delegate = self
         tabItemViewTapped(UserPreferences.selectedIndex)
     }
@@ -118,6 +121,14 @@ extension ViewController: TabItemViewDelegate {
         selectedViewController.view.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
+    }
+
+}
+
+extension ViewController: WeatherViewDelegate {
+
+    func weatherViewTapped() {
+        present(weatherViewController, animated: true)
     }
 
 }

@@ -1,7 +1,15 @@
 import UIKit
 import SnapKit
 
+protocol WeatherViewDelegate: AnyObject {
+
+    func weatherViewTapped()
+
+}
+
 class HeaderView: BaseView {
+
+    weak var delegate: WeatherViewDelegate?
 
     private let iconLabelImageView = UIImageView()
     private let leagueImageView = UIImageView()
@@ -44,4 +52,13 @@ class HeaderView: BaseView {
         }
     }
 
+    override func setupGestureRecognizers() {
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(didTapView))
+            leagueImageView.isUserInteractionEnabled = true
+            leagueImageView.addGestureRecognizer(tapGesture)
+    }
+
+    @objc func didTapView(_ sender: UITapGestureRecognizer) {
+        delegate?.weatherViewTapped()
+    }
 }
