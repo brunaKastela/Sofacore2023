@@ -9,4 +9,8 @@ enum UserPreferences {
         set { UserDefaults.standard.set(newValue, forKey: UserPreferences.selectedIndexKey) }
     }
 
+    static var usesMetricSystem: Bool {
+        Locale.current.measurementSystem == .metric
+    }
+
 }

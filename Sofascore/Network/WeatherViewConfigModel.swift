@@ -8,8 +8,8 @@ struct WeatherViewConfigModel {
     let locationName: String
     let country: String
 
-    let temperatureC: Float
-    let windKph: Float
+    let temperature: String
+    let wind: String
     let humidity: Int
     let uvIndex: Float
 

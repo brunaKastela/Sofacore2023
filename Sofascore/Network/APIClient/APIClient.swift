@@ -2,6 +2,6 @@ import Foundation
 
 protocol APICient {
 
-    func getWeather(completion: @escaping (WeatherAPIModel?, Error?) -> Void)
+    func getWeather(for city: String, with key: String, completion: @escaping (WeatherAPIModel?, Error?) -> Void)
 
 }

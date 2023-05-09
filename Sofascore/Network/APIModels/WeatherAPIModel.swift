@@ -7,5 +7,5 @@ struct WeatherAPIModel: Codable {
         case location
         case currentWeather = "current"
     }
-    
+
 }

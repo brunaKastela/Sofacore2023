@@ -45,14 +45,8 @@ class WeatherView: BaseView {
         }
 
         weatherStackView.snp.makeConstraints { make in
-            make.centerX.centerY.equalToSuperview()
-            make.leading.greaterThanOrEqualToSuperview().inset(16)
-            make.trailing.lessThanOrEqualToSuperview().inset(16)
+            make.edges.equalToSuperview().inset(16)
         }
-    }
-
-    override func setupGestureRecognizers() {
-        // Default implementation is empty
     }
 
     func configure(with model: WeatherViewConfigModel) {
@@ -60,12 +54,12 @@ class WeatherView: BaseView {
             iconImageView.sd_setImage(with: url)
         }
 
-        temperatureLabel.text = String(format: "%.0f°", model.temperatureC)
+        temperatureLabel.text = model.temperature
         descriptionLabel.text = model.description
         locationLabel.text = model.locationName
         countryLabel.text = model.country
 
-        windLabel.text = "Wind: \(model.windKph) km/h"
+        windLabel.text = "Wind: \(model.wind)"
         humidityLabel.text = "Humidity: \(model.humidity)%"
         uvIndexLabel.text = "UV index: \(model.uvIndex)"
     }

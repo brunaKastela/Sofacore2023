@@ -3,11 +3,20 @@ import Alamofire
 
 class WeatherViewController: UIViewController {
 
-    private let weatherViewModel = WeatherViewModel()
+    private let weatherViewModel: WeatherViewModel
 
     private let weatherView = WeatherView()
 
+    private enum TestingConstants {
+
+        static let city = "Zadar"
+        static let key = "0ab9485b0f3e445da37212546230705"
+
+    }
+
     init() {
+        self.weatherViewModel = WeatherViewModel(for: TestingConstants.city, with: TestingConstants.key)
+
         super.init(nibName: nil, bundle: nil)
     }
 
@@ -40,11 +49,12 @@ extension WeatherViewController: BaseViewProtocol {
     }
 
     func styleViews() {
+        view.backgroundColor = .colorPrimaryHighlight
     }
 
     func setupConstraints() {
         weatherView.snp.makeConstraints { make in
-            make.edges.equalToSuperview()
+            make.centerX.centerY.equalToSuperview()
         }
     }
 
