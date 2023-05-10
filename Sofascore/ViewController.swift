@@ -2,14 +2,17 @@ import UIKit
 
 class ViewController: UIViewController {
 
-    private let tabModel = ViewModel().tabModel
+    let tabModel = [
+        TabModel(image: .footballIcon, title: .localized(.football)),
+        TabModel(image: .basketballIcon, title: .localized(.basketball)),
+        TabModel(image: .amFootballIcon, title: .localized(.amFootball))]
 
     let safeAreaView = UIView()
     let headerView = HeaderView()
     lazy var tabView = TabView(with: tabModel)
     let containerView = UIView()
 
-    let firstViewController = UIViewController()
+    let firstViewController = EventsViewController()
     let secondViewController = UIViewController()
     let thirdViewController = UIViewController()
 
@@ -44,11 +47,9 @@ extension ViewController: BaseViewProtocol {
     func styleViews() {
         safeAreaView.backgroundColor = headerView.backgroundColor
 
-        firstViewController.view.backgroundColor(.green)
-
         secondViewController.view.backgroundColor(.red)
 
-        thirdViewController.view.backgroundColor(.blue)
+        thirdViewController.view.backgroundColor(.green)
     }
 
     func setupConstraints() {

@@ -10,4 +10,8 @@ extension String {
         NSLocalizedString(key.rawValue, comment: "")
     }
 
+    static func eventState(_ key: EventStates) -> String {
+        NSLocalizedString(key.rawValue, comment: "")
+    }
+
 }
