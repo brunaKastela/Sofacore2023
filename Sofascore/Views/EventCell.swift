@@ -14,13 +14,6 @@ class EventCell: UITableViewCell, Reusable {
     private let homeTeamView = TeamView()
     private let awayTeamView = TeamView()
 
-    private enum Constants {
-
-        static let finishedGameLabel = "FT"
-        static let upcomingGameLabel = "-"
-
-    }
-
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
 
