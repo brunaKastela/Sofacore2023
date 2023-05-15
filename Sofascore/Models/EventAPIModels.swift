@@ -16,13 +16,21 @@ struct Event: Codable {
 
 }
 
-struct Tournament: Codable {
+struct Tournament: Codable, Hashable {
 
     let id: Int
     let name: String
     let slug: String
     let sport: Sport
     let country: Country
+
+    static func == (lhs: Tournament, rhs: Tournament) -> Bool {
+        lhs.id == rhs.id
+    }
+
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(id)
+    }
 
 }
 

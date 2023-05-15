@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		2581349BF2E5421A187D1AF3 /* Pods_Sofascore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B47CFA874F244F898D517AD8 /* Pods_Sofascore.framework */; };
 		D27C36BF29E5EAF7008FBADF /* EventTestData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D27C36BE29E5EAF7008FBADF /* EventTestData.swift */; };
+		D27D063A2A1258230079CC79 /* TournamentHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D27D06392A1258230079CC79 /* TournamentHeaderView.swift */; };
 		D27D9FB52A02F7A10099BA74 /* TeamView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D27D9FB42A02F7A10099BA74 /* TeamView.swift */; };
 		D281C82A2A03F58600964B0A /* TeamModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D281C8292A03F58600964B0A /* TeamModel.swift */; };
 		D28478CC29C3114F009DC72F /* SofascoreSans-MediumCondensed.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D28478C629C3114F009DC72F /* SofascoreSans-MediumCondensed.ttf */; };
@@ -44,6 +45,7 @@
 		D28BE79C29D1D4EF009E845E /* EventCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D28BE79B29D1D4EF009E845E /* EventCell.swift */; };
 		D28BE79E29D1DC83009E845E /* EventStates.swift in Sources */ = {isa = PBXBuildFile; fileRef = D28BE79D29D1DC83009E845E /* EventStates.swift */; };
 		D28BE7A029D2002E009E845E /* EventModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D28BE79F29D2002E009E845E /* EventModel.swift */; };
+		D29577CD2A11BAB500723E17 /* EventSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = D29577CC2A11BAB400723E17 /* EventSection.swift */; };
 		D29B579829D3216A00E29387 /* Reusable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D29B579729D3216A00E29387 /* Reusable.swift */; };
 		D29BB50929C09ABA008C3178 /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D29BB50829C09ABA008C3178 /* HeaderView.swift */; };
 		D29E88CC29C3B2C700175A85 /* TabModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D29E88CB29C3B2C700175A85 /* TabModel.swift */; };
@@ -61,6 +63,7 @@
 		634873A7C7DC2CA5E8B92EBB /* Pods-Sofascore.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Sofascore.release.xcconfig"; path = "Target Support Files/Pods-Sofascore/Pods-Sofascore.release.xcconfig"; sourceTree = "<group>"; };
 		B47CFA874F244F898D517AD8 /* Pods_Sofascore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Sofascore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D27C36BE29E5EAF7008FBADF /* EventTestData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventTestData.swift; sourceTree = "<group>"; };
+		D27D06392A1258230079CC79 /* TournamentHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TournamentHeaderView.swift; sourceTree = "<group>"; };
 		D27D9FB42A02F7A10099BA74 /* TeamView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamView.swift; sourceTree = "<group>"; };
 		D281C8292A03F58600964B0A /* TeamModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamModel.swift; sourceTree = "<group>"; };
 		D28478C629C3114F009DC72F /* SofascoreSans-MediumCondensed.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SofascoreSans-MediumCondensed.ttf"; sourceTree = "<group>"; };
@@ -101,6 +104,7 @@
 		D28BE79B29D1D4EF009E845E /* EventCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventCell.swift; sourceTree = "<group>"; };
 		D28BE79D29D1DC83009E845E /* EventStates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventStates.swift; sourceTree = "<group>"; };
 		D28BE79F29D2002E009E845E /* EventModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventModel.swift; sourceTree = "<group>"; };
+		D29577CC2A11BAB400723E17 /* EventSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventSection.swift; sourceTree = "<group>"; };
 		D29B579729D3216A00E29387 /* Reusable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reusable.swift; sourceTree = "<group>"; };
 		D29BB50829C09ABA008C3178 /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
 		D29E88CB29C3B2C700175A85 /* TabModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabModel.swift; sourceTree = "<group>"; };
@@ -231,6 +235,7 @@
 				D29E88CB29C3B2C700175A85 /* TabModel.swift */,
 				D281C8292A03F58600964B0A /* TeamModel.swift */,
 				D29F15BC2A0C2BB4002A20BD /* EventAPIModels.swift */,
+				D29577CC2A11BAB400723E17 /* EventSection.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -265,6 +270,7 @@
 				D2886B9D29C1D03C0072C108 /* TabView.swift */,
 				D28BE79B29D1D4EF009E845E /* EventCell.swift */,
 				D27D9FB42A02F7A10099BA74 /* TeamView.swift */,
+				D27D06392A1258230079CC79 /* TournamentHeaderView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -436,6 +442,7 @@
 				D2B02C4529D088EA00EB918E /* EventViewModel.swift in Sources */,
 				D2887E4429C0F152003AAA5B /* UIColors+Styles.swift in Sources */,
 				D28BE79A29D1D3DA009E845E /* EventsViewController.swift in Sources */,
+				D27D063A2A1258230079CC79 /* TournamentHeaderView.swift in Sources */,
 				D281C82A2A03F58600964B0A /* TeamModel.swift in Sources */,
 				D2886B9C29C1C7800072C108 /* TabItemView.swift in Sources */,
 				D2D9A15A29C0A610001A8FC3 /* BaseView.swift in Sources */,
@@ -456,6 +463,7 @@
 				D29F15BD2A0C2BB4002A20BD /* EventAPIModels.swift in Sources */,
 				D28BE79E29D1DC83009E845E /* EventStates.swift in Sources */,
 				D2887E3A29C0D134003AAA5B /* UIImageView+AttributesBuilder.swift in Sources */,
+				D29577CD2A11BAB500723E17 /* EventSection.swift in Sources */,
 				D28BE7A029D2002E009E845E /* EventModel.swift in Sources */,
 				D29B579829D3216A00E29387 /* Reusable.swift in Sources */,
 				D2887E3D29C0D134003AAA5B /* UIStackView+AttributesBuilder.swift in Sources */,

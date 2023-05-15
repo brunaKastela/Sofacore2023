@@ -3,6 +3,7 @@ import UIKit
 
 class EventViewModel {
 
+    var eventSections: [EventSection] = []
     var eventCellModels: [EventCellModel] = []
     var events: [Event] = []
 
@@ -17,6 +18,11 @@ class EventViewModel {
 
     init() {
         self.apiClient = AlamofireAPIClient()
+    }
+
+    func prepareEvents() {
+        mapEvents()
+        sectionEvents()
     }
 
     func getEvents(for slug: String, for date: String, completion: @escaping () -> Void) {
@@ -35,7 +41,7 @@ class EventViewModel {
 
     func mapEvents() {
         self.eventCellModels = events.map { event in
-            let eventId = String(event.id)
+            let eventId = event.id
             let teamsColors = getTeamsColor(for: event)
             let scoresColors = getScoresColor(for: event)
 
@@ -80,6 +86,78 @@ class EventViewModel {
                 awayTeam: awayTeam)
         }
     }
+
+    func sectionEvents() {
+        var eventSections: [EventSection] = []
+        let leagueSectionedEvents = Dictionary(grouping: events, by: { $0.tournament })
+
+        for section in leagueSectionedEvents {
+            var eventCellModels: [EventCellModel] = []
+
+            for event in section.value {
+//                if let cellModel = self.eventCellModels.first(where: { $0.eventId == event.id }) {
+//                    eventCellModels.append(cellModel)
+//                } else {
+//
+//                }
+//                let eventCellModel = mapEvent(event)
+                eventCellModels.append(mapEvent(event))
+            }
+            let eventSection = EventSection(tournament: section.key, events: eventCellModels)
+            eventSections.append(eventSection)
+        }
+
+        if !eventSections.isEmpty {
+            self.eventSections = eventSections
+        }
+    }
+
+    func mapEvent(_ event: Event) -> EventCellModel {
+        let eventId = event.id
+        let teamsColors = getTeamsColor(for: event)
+        let scoresColors = getScoresColor(for: event)
+
+        let startTime = formatStartTime(of: event.startDate)
+        let eventStatus = getStatus(for: event)
+        let eventStatusColor = eventStatusColor(for: event.status)
+
+        let homeTeamIconUrl = URL(string: "https://academy.dev.sofascore.com/team/\(event.homeTeam.id)/image")
+        let homeTeamName = event.homeTeam.name
+        let homeTeamScore = setScore(of: event.homeScore.total)
+
+        let homeTeamNameColor = teamsColors.0
+        let homeTeamScoreColor = scoresColors.0
+
+        let homeTeam = TeamModel(
+            teamIconUrl: homeTeamIconUrl,
+            teamName: homeTeamName,
+            teamScore: homeTeamScore,
+            teamNameColor: homeTeamNameColor,
+            teamScoreColor: homeTeamScoreColor)
+
+        let awayTeamIconUrl = URL(string: "https://academy.dev.sofascore.com/team/\(event.awayTeam.id)/image")
+        let awayTeamName = event.awayTeam.name
+        let awayTeamScore = setScore(of: event.awayScore.total)
+
+        let awayTeamColor = teamsColors.1
+        let awayTeamScoreColor = scoresColors.1
+
+        let awayTeam = TeamModel(
+            teamIconUrl: awayTeamIconUrl,
+            teamName: awayTeamName,
+            teamScore: awayTeamScore,
+            teamNameColor: awayTeamColor,
+            teamScoreColor: awayTeamScoreColor)
+
+        return EventCellModel(
+            eventId: eventId,
+            startTime: startTime,
+            eventStatus: eventStatus,
+            eventStatusColor: eventStatusColor,
+            homeTeam: homeTeam,
+            awayTeam: awayTeam)
+    }
+
 }
 
 extension EventViewModel {
@@ -91,6 +169,15 @@ extension EventViewModel {
         else { return }
 
         cell.configureEventCell(with: model)
+    }
+
+    func configureHeader(of cell: Any, with model: Any) {
+        guard
+            let model = model as? Tournament,
+            let cell = cell as? TournamentHeaderView
+        else { return }
+
+        cell.configureTournamentCell(with: model)
     }
 
     func setScore(of score: Int?) -> String {
