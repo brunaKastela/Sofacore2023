@@ -1,5 +1,6 @@
 import UIKit
 import SnapKit
+import SDWebImage
 
 class EventCell: UITableViewCell, Reusable {
 
@@ -111,11 +112,15 @@ extension EventCell {
         startTimeLabel.text = model.startTime
         eventStatusLabel.text = model.eventStatus
 
-        homeTeamView.teamIcon.image = model.homeTeam.teamIcon
+        if let url = model.homeTeam.teamIconUrl {
+            homeTeamView.teamIcon.sd_setImage(with: url)
+        }
         homeTeamView.teamLabel.text = model.homeTeam.teamName
         homeTeamView.teamScoreLabel.text = model.homeTeam.teamScore
 
-        awayTeamView.teamIcon.image = model.awayTeam.teamIcon
+        if let url = model.awayTeam.teamIconUrl {
+            awayTeamView.teamIcon.sd_setImage(with: url)
+        }
         awayTeamView.teamLabel.text = model.awayTeam.teamName
         awayTeamView.teamScoreLabel.text = model.awayTeam.teamScore
     }

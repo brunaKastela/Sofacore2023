@@ -53,7 +53,7 @@ struct EventTestData {
         let currentEvent = EventModel(
             startDate: currentStartDate,
             startTime: currentStartTime,
-            eventState: .inProgress,
+            eventState: .inprogress,
             homeTeamIcon: .realMadridIcon,
             homeTeam: "Real Madrid",
             homeTeamScore: 1,
@@ -67,7 +67,7 @@ struct EventTestData {
         let lateEvent = EventModel(
             startDate: lateStartDate,
             startTime: lateStartTime,
-            eventState: .upcoming,
+            eventState: .notstarted,
             homeTeamIcon: .barcelonaIcon,
             homeTeam: "Barcelona",
             homeTeamScore: nil,

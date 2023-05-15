@@ -6,6 +6,8 @@ class EventsViewController: UIViewController {
 
     private let tableView = UITableView()
 
+    private let slug = "football"
+
     init() {
         super.init(nibName: nil, bundle: nil)
     }
@@ -16,6 +18,15 @@ class EventsViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        let formattedDate = dateFormatter.string(from: Date())
+
+        eventViewModel.getEvents(for: slug, for: formattedDate) { [weak self] in
+            self?.eventViewModel.mapEvents()
+            self?.tableView.reloadData()
+        }
 
         addViews()
         styleViews()
