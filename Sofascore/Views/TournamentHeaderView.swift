@@ -49,11 +49,15 @@ extension TournamentHeaderView: BaseViewProtocol {
     func styleViews() {
         dividerView.backgroundColor(.onSurfaceOnSurfaceLv4)
 
-        countryLabel.font = .systemFont(ofSize: 16, weight: .bold)
+        countryLabel.font = .systemFont(ofSize: 14, weight: .bold)
         countryLabel.textColor = .black
+        countryLabel.lineBreakMode = .byTruncatingTail
+        countryLabel.numberOfLines = 1
 
-        leagueLabel.font = .systemFont(ofSize: 16, weight: .bold)
+        leagueLabel.font = .systemFont(ofSize: 14, weight: .bold)
         leagueLabel.textColor = .onSurfaceOnSurfaceLv2
+        leagueLabel.lineBreakMode = .byTruncatingTail
+        leagueLabel.numberOfLines = 1
 
         leagueStackView.axis = .horizontal
         leagueStackView.alignment = .center
@@ -73,7 +77,7 @@ extension TournamentHeaderView: BaseViewProtocol {
         leagueStackView.snp.makeConstraints { make in
             make.leading.equalTo(iconImageView.snp.trailing).offset(32)
             make.centerY.equalToSuperview()
-//            make.trailing.greaterThanOrEqualToSuperview().inset(129)
+            make.trailing.lessThanOrEqualToSuperview().inset(16)
         }
 
         dividerView.snp.makeConstraints { make in

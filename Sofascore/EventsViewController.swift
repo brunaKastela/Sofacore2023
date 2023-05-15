@@ -5,7 +5,9 @@ class EventsViewController: UIViewController {
     private var eventSections: [EventSection] = []
     private let eventViewModel = EventViewModel()
 
-    private let tableView = UITableView()
+    private let backgroundView = UIView()
+    private let dateHeaderView = DateHeaderView()
+    private let tableView = UITableView(frame: CGRect.zero, style: .grouped)
 
     private let slug = "football"
 
@@ -39,10 +41,15 @@ class EventsViewController: UIViewController {
 extension EventsViewController: BaseViewProtocol {
 
     func addViews() {
+        view.addSubview(dateHeaderView)
+        view.addSubview(backgroundView)
         view.addSubview(tableView)
     }
 
     func styleViews() {
+        backgroundView.backgroundColor = .white
+        tableView.backgroundView = backgroundView
+
         tableView.register(EventCell.self, forCellReuseIdentifier: EventCell.identifier)
         tableView.register(TournamentHeaderView.self, forHeaderFooterViewReuseIdentifier: TournamentHeaderView.identifier)
 
@@ -54,11 +61,18 @@ extension EventsViewController: BaseViewProtocol {
 
         tableView.sectionFooterHeight = 0
         tableView.sectionHeaderTopPadding = 0
+
     }
 
     func setupConstraints() {
+        dateHeaderView.snp.makeConstraints { make in
+            make.top.equalToSuperview()
+            make.horizontalEdges.equalToSuperview()
+        }
         tableView.snp.makeConstraints { make in
-            make.edges.equalToSuperview()
+            make.top.equalTo(dateHeaderView.snp.bottom)
+            make.horizontalEdges.equalToSuperview()
+            make.bottom.equalToSuperview()
         }
     }
 

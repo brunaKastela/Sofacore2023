@@ -11,6 +11,7 @@
 		D27C36BF29E5EAF7008FBADF /* EventTestData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D27C36BE29E5EAF7008FBADF /* EventTestData.swift */; };
 		D27D063A2A1258230079CC79 /* TournamentHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D27D06392A1258230079CC79 /* TournamentHeaderView.swift */; };
 		D27D9FB52A02F7A10099BA74 /* TeamView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D27D9FB42A02F7A10099BA74 /* TeamView.swift */; };
+		D281A4002A12F36800827776 /* DateHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D281A3FF2A12F36800827776 /* DateHeaderView.swift */; };
 		D281C82A2A03F58600964B0A /* TeamModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D281C8292A03F58600964B0A /* TeamModel.swift */; };
 		D28478CC29C3114F009DC72F /* SofascoreSans-MediumCondensed.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D28478C629C3114F009DC72F /* SofascoreSans-MediumCondensed.ttf */; };
 		D28478CD29C3114F009DC72F /* SofascoreSans-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D28478C729C3114F009DC72F /* SofascoreSans-Medium.ttf */; };
@@ -65,6 +66,7 @@
 		D27C36BE29E5EAF7008FBADF /* EventTestData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventTestData.swift; sourceTree = "<group>"; };
 		D27D06392A1258230079CC79 /* TournamentHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TournamentHeaderView.swift; sourceTree = "<group>"; };
 		D27D9FB42A02F7A10099BA74 /* TeamView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamView.swift; sourceTree = "<group>"; };
+		D281A3FF2A12F36800827776 /* DateHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateHeaderView.swift; sourceTree = "<group>"; };
 		D281C8292A03F58600964B0A /* TeamModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamModel.swift; sourceTree = "<group>"; };
 		D28478C629C3114F009DC72F /* SofascoreSans-MediumCondensed.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SofascoreSans-MediumCondensed.ttf"; sourceTree = "<group>"; };
 		D28478C729C3114F009DC72F /* SofascoreSans-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SofascoreSans-Medium.ttf"; sourceTree = "<group>"; };
@@ -271,6 +273,7 @@
 				D28BE79B29D1D4EF009E845E /* EventCell.swift */,
 				D27D9FB42A02F7A10099BA74 /* TeamView.swift */,
 				D27D06392A1258230079CC79 /* TournamentHeaderView.swift */,
+				D281A3FF2A12F36800827776 /* DateHeaderView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -469,6 +472,7 @@
 				D2887E3D29C0D134003AAA5B /* UIStackView+AttributesBuilder.swift in Sources */,
 				D29BB50929C09ABA008C3178 /* HeaderView.swift in Sources */,
 				D2887E3F29C0D134003AAA5B /* CALayer+AttributesBuilder.swift in Sources */,
+				D281A4002A12F36800827776 /* DateHeaderView.swift in Sources */,
 				D2887E4129C0E312003AAA5B /* UIImage+Assets.swift in Sources */,
 				D2D9A15B29C0A610001A8FC3 /* BaseViewProtocol.swift in Sources */,
 				D29F15C32A0C2D21002A20BD /* APIClient.swift in Sources */,
