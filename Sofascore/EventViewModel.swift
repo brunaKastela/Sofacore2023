@@ -95,14 +95,9 @@ class EventViewModel {
             var eventCellModels: [EventCellModel] = []
 
             for event in section.value {
-//                if let cellModel = self.eventCellModels.first(where: { $0.eventId == event.id }) {
-//                    eventCellModels.append(cellModel)
-//                } else {
-//
-//                }
-//                let eventCellModel = mapEvent(event)
                 eventCellModels.append(mapEvent(event))
             }
+
             let eventSection = EventSection(tournament: section.key, events: eventCellModels)
             eventSections.append(eventSection)
         }
@@ -161,6 +156,29 @@ class EventViewModel {
 }
 
 extension EventViewModel {
+
+    func getDateLabel(for date: Date) -> String {
+        let calendar = Calendar.current
+        let today = Date()
+
+        if calendar.isDate(date, inSameDayAs: today) {
+            return "Today"
+        } else {
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "EEE, dd.MM.yyyy."
+
+           return dateFormatter.string(from: date)
+        }
+    }
+
+    func getEventNumberLabel() -> String {
+        let eventNumber = events.count
+
+        if eventNumber == 1 {
+            return "\(eventNumber) Event"
+        }
+        return"\(eventNumber) Events"
+    }
 
     func configure(of cell: Any, with model: Any) {
         guard

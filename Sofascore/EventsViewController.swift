@@ -1,4 +1,5 @@
 import UIKit
+import SnapKit
 
 class EventsViewController: UIViewController {
 
@@ -29,6 +30,10 @@ class EventsViewController: UIViewController {
         eventViewModel.getEvents(for: slug, for: formattedDate) { [weak self] in
             self?.eventViewModel.prepareEvents()
             self?.tableView.reloadData()
+
+            self?.dateHeaderView.setView(
+                for: self?.eventViewModel.getDateLabel(for: Date()),
+                with: self?.eventViewModel.getEventNumberLabel())
         }
 
         addViews()
@@ -110,5 +115,21 @@ extension EventsViewController: UITableViewDataSource, UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         nil
+    }
+
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let selectedEvent = eventViewModel.eventSections[indexPath.section].events[indexPath.row]
+
+        let tmpVC = UIViewController()
+        tmpVC.view?.backgroundColor = .white
+        let tmpLabel = UILabel()
+        tmpLabel.text(String(selectedEvent.eventId))
+
+        tmpVC.view.addSubview(tmpLabel)
+        tmpLabel.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.centerY.equalToSuperview()
+        }
+        present(tmpVC, animated: true)
     }
 }

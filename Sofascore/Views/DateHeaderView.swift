@@ -5,6 +5,15 @@ class DateHeaderView: BaseView {
     let dateLabel = UILabel()
     let eventNumberLabel = UILabel()
 
+    func setView(for date: String?, with eventNumber: String?) {
+        if let date = date {
+            dateLabel.text = date
+        }
+        if let eventNumber = eventNumber {
+            eventNumberLabel.text = eventNumber
+        }
+    }
+
     override func addViews() {
         addSubview(dateLabel)
         addSubview(eventNumberLabel)
@@ -13,11 +22,9 @@ class DateHeaderView: BaseView {
     override func styleViews() {
         backgroundColor = .surfaceSurface0
 
-        dateLabel.text = "Wed, 14.12.2022"
         dateLabel.font = .systemFont(ofSize: 12, weight: .bold)
         dateLabel.textColor = .black
 
-        eventNumberLabel.text = "5 Events"
         eventNumberLabel.font = .systemFont(ofSize: 12, weight: .bold)
         eventNumberLabel.textColor = .onSurfaceOnSurfaceLv2
     }

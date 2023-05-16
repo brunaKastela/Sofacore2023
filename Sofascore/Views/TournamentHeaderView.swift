@@ -94,7 +94,8 @@ extension TournamentHeaderView {
         countryLabel.text = model.country.name
         leagueLabel.text = model.name
 
-        iconImageView.sd_setImage(with: URL(string: "https://academy.dev.sofascore.com/tournament/\(model.id)/image"))
+        iconImageView.sd_setImage(
+            with: URL(string: "https://academy.dev.sofascore.com/tournament/\(model.id)/image"))
     }
 
 }
