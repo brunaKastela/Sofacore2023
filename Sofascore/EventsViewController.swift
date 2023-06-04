@@ -23,22 +23,26 @@ class EventsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd"
-        let formattedDate = dateFormatter.string(from: Date())
-
-        eventViewModel.getEvents(for: slug, for: formattedDate) { [weak self] in
-            self?.eventViewModel.prepareEvents()
-            self?.tableView.reloadData()
-
-            self?.dateHeaderView.setView(
-                for: self?.eventViewModel.getDateLabel(for: Date()),
-                with: self?.eventViewModel.getEventNumberLabel())
-        }
-
         addViews()
         styleViews()
         setupConstraints()
+    }
+
+    func reloadEvents(for date: Date) {
+        print(date)
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        let formattedDate = dateFormatter.string(from: date)
+
+        eventViewModel.getEvents(for: slug, for: formattedDate) { [weak self] in
+            self?.eventViewModel.prepareEvents()
+
+            self?.dateHeaderView.setView(
+                for: self?.eventViewModel.getDateLabel(for: date),
+                with: self?.eventViewModel.getEventNumberLabel())
+
+            self?.tableView.reloadData()
+        }
     }
 
 }
@@ -52,11 +56,12 @@ extension EventsViewController: BaseViewProtocol {
     }
 
     func styleViews() {
-        backgroundView.backgroundColor = .white
+        backgroundView.backgroundColor = .surfaceSurface0
         tableView.backgroundView = backgroundView
 
         tableView.register(EventCell.self, forCellReuseIdentifier: EventCell.identifier)
         tableView.register(TournamentHeaderView.self, forHeaderFooterViewReuseIdentifier: TournamentHeaderView.identifier)
+        tableView.register(DividerView.self, forHeaderFooterViewReuseIdentifier: DividerView.identifier)
 
         tableView.dataSource = self
         tableView.delegate = self
@@ -64,7 +69,7 @@ extension EventsViewController: BaseViewProtocol {
         tableView.estimatedRowHeight = UITableView.automaticDimension
         tableView.separatorStyle = .none
 
-        tableView.sectionFooterHeight = 0
+        tableView.sectionFooterHeight = 1
         tableView.sectionHeaderTopPadding = 0
 
     }
@@ -106,15 +111,20 @@ extension EventsViewController: UITableViewDataSource, UITableViewDelegate {
             return UITableViewCell()
         }
 
-//        if index >= 0 && index < eventViewModel.count {
-//                   eventViewModel.configure(of: cell, with: eventViewModel.eventSections[indexPath.section].events[indexPath.row])
-//               }
         eventViewModel.configure(of: cell, with: eventViewModel.eventSections[indexPath.section].events[indexPath.row])
         return cell
     }
 
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-        nil
+        if section == eventViewModel.eventSections.count - 1 {
+            return nil
+        }
+
+        guard let footerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: DividerView.identifier) as? DividerView else {
+            return nil
+        }
+
+        return footerView
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -132,4 +142,5 @@ extension EventsViewController: UITableViewDataSource, UITableViewDelegate {
         }
         present(tmpVC, animated: true)
     }
+
 }

@@ -102,9 +102,7 @@ class EventViewModel {
             eventSections.append(eventSection)
         }
 
-        if !eventSections.isEmpty {
-            self.eventSections = eventSections
-        }
+        self.eventSections = eventSections.isEmpty ? [] : eventSections
     }
 
     func mapEvent(_ event: Event) -> EventCellModel {

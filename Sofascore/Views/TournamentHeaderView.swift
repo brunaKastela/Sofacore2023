@@ -4,7 +4,7 @@ import SDWebImage
 
 class TournamentHeaderView: UITableViewHeaderFooterView, Reusable {
 
-    private let dividerView = UIView()
+    private let backView = UIView()
 
     private let iconImageView = UIImageView()
 
@@ -39,7 +39,7 @@ class TournamentHeaderView: UITableViewHeaderFooterView, Reusable {
 extension TournamentHeaderView: BaseViewProtocol {
 
     func addViews() {
-        addSubview(dividerView)
+        addSubview(backView)
         addSubview(iconImageView)
         addSubview(leagueStackView)
 
@@ -47,7 +47,7 @@ extension TournamentHeaderView: BaseViewProtocol {
     }
 
     func styleViews() {
-        dividerView.backgroundColor(.onSurfaceOnSurfaceLv4)
+        backView.backgroundColor = .surfaceSurface1
 
         countryLabel.font = .systemFont(ofSize: 14, weight: .bold)
         countryLabel.textColor = .black
@@ -68,6 +68,10 @@ extension TournamentHeaderView: BaseViewProtocol {
     }
 
     func setupConstraints() {
+        backView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
+
         iconImageView.snp.makeConstraints { make in
             make.size.equalTo(32)
             make.leading.equalToSuperview().inset(16)
@@ -78,11 +82,6 @@ extension TournamentHeaderView: BaseViewProtocol {
             make.leading.equalTo(iconImageView.snp.trailing).offset(32)
             make.centerY.equalToSuperview()
             make.trailing.lessThanOrEqualToSuperview().inset(16)
-        }
-
-        dividerView.snp.makeConstraints { make in
-            make.height.equalTo(1)
-            make.horizontalEdges.equalToSuperview()
         }
     }
 

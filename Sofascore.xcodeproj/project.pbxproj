@@ -8,7 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		2581349BF2E5421A187D1AF3 /* Pods_Sofascore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B47CFA874F244F898D517AD8 /* Pods_Sofascore.framework */; };
+		D276567B2A2D2B76000BD19B /* DividerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D276567A2A2D2B76000BD19B /* DividerView.swift */; };
 		D27C36BF29E5EAF7008FBADF /* EventTestData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D27C36BE29E5EAF7008FBADF /* EventTestData.swift */; };
+		D27CA9B72A2BE29600D2ACBB /* DatePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D27CA9B62A2BE29600D2ACBB /* DatePickerViewController.swift */; };
+		D27CA9B92A2BF57D00D2ACBB /* DatePickerViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D27CA9B82A2BF57D00D2ACBB /* DatePickerViewCell.swift */; };
 		D27D063A2A1258230079CC79 /* TournamentHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D27D06392A1258230079CC79 /* TournamentHeaderView.swift */; };
 		D27D9FB52A02F7A10099BA74 /* TeamView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D27D9FB42A02F7A10099BA74 /* TeamView.swift */; };
 		D281A4002A12F36800827776 /* DateHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D281A3FF2A12F36800827776 /* DateHeaderView.swift */; };
@@ -46,6 +49,8 @@
 		D28BE79C29D1D4EF009E845E /* EventCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D28BE79B29D1D4EF009E845E /* EventCell.swift */; };
 		D28BE79E29D1DC83009E845E /* EventStates.swift in Sources */ = {isa = PBXBuildFile; fileRef = D28BE79D29D1DC83009E845E /* EventStates.swift */; };
 		D28BE7A029D2002E009E845E /* EventModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D28BE79F29D2002E009E845E /* EventModel.swift */; };
+		D28FBC9B2A2CF83A00B53B7E /* DatePickerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D28FBC9A2A2CF83A00B53B7E /* DatePickerModel.swift */; };
+		D28FBC9D2A2CF8A400B53B7E /* DatePickerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D28FBC9C2A2CF8A400B53B7E /* DatePickerViewModel.swift */; };
 		D29577CD2A11BAB500723E17 /* EventSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = D29577CC2A11BAB400723E17 /* EventSection.swift */; };
 		D29B579829D3216A00E29387 /* Reusable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D29B579729D3216A00E29387 /* Reusable.swift */; };
 		D29BB50929C09ABA008C3178 /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D29BB50829C09ABA008C3178 /* HeaderView.swift */; };
@@ -63,7 +68,10 @@
 		6073530C202A18566A1F3B8A /* Pods-Sofascore.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Sofascore.debug.xcconfig"; path = "Target Support Files/Pods-Sofascore/Pods-Sofascore.debug.xcconfig"; sourceTree = "<group>"; };
 		634873A7C7DC2CA5E8B92EBB /* Pods-Sofascore.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Sofascore.release.xcconfig"; path = "Target Support Files/Pods-Sofascore/Pods-Sofascore.release.xcconfig"; sourceTree = "<group>"; };
 		B47CFA874F244F898D517AD8 /* Pods_Sofascore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Sofascore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D276567A2A2D2B76000BD19B /* DividerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DividerView.swift; sourceTree = "<group>"; };
 		D27C36BE29E5EAF7008FBADF /* EventTestData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventTestData.swift; sourceTree = "<group>"; };
+		D27CA9B62A2BE29600D2ACBB /* DatePickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatePickerViewController.swift; sourceTree = "<group>"; };
+		D27CA9B82A2BF57D00D2ACBB /* DatePickerViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerViewCell.swift; sourceTree = "<group>"; };
 		D27D06392A1258230079CC79 /* TournamentHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TournamentHeaderView.swift; sourceTree = "<group>"; };
 		D27D9FB42A02F7A10099BA74 /* TeamView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamView.swift; sourceTree = "<group>"; };
 		D281A3FF2A12F36800827776 /* DateHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateHeaderView.swift; sourceTree = "<group>"; };
@@ -106,6 +114,8 @@
 		D28BE79B29D1D4EF009E845E /* EventCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventCell.swift; sourceTree = "<group>"; };
 		D28BE79D29D1DC83009E845E /* EventStates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventStates.swift; sourceTree = "<group>"; };
 		D28BE79F29D2002E009E845E /* EventModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventModel.swift; sourceTree = "<group>"; };
+		D28FBC9A2A2CF83A00B53B7E /* DatePickerModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerModel.swift; sourceTree = "<group>"; };
+		D28FBC9C2A2CF8A400B53B7E /* DatePickerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerViewModel.swift; sourceTree = "<group>"; };
 		D29577CC2A11BAB400723E17 /* EventSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventSection.swift; sourceTree = "<group>"; };
 		D29B579729D3216A00E29387 /* Reusable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reusable.swift; sourceTree = "<group>"; };
 		D29BB50829C09ABA008C3178 /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
@@ -187,6 +197,7 @@
 				D288311629B225D8007E6D3B /* AppDelegate.swift */,
 				D288311829B225D8007E6D3B /* SceneDelegate.swift */,
 				D288311A29B225D8007E6D3B /* ViewController.swift */,
+				D28FBC9C2A2CF8A400B53B7E /* DatePickerViewModel.swift */,
 				D28BE79929D1D3DA009E845E /* EventsViewController.swift */,
 				D2B02C4429D088EA00EB918E /* EventViewModel.swift */,
 				D288312129B225E0007E6D3B /* LaunchScreen.storyboard */,
@@ -238,6 +249,7 @@
 				D281C8292A03F58600964B0A /* TeamModel.swift */,
 				D29F15BC2A0C2BB4002A20BD /* EventAPIModels.swift */,
 				D29577CC2A11BAB400723E17 /* EventSection.swift */,
+				D28FBC9A2A2CF83A00B53B7E /* DatePickerModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -273,7 +285,10 @@
 				D28BE79B29D1D4EF009E845E /* EventCell.swift */,
 				D27D9FB42A02F7A10099BA74 /* TeamView.swift */,
 				D27D06392A1258230079CC79 /* TournamentHeaderView.swift */,
+				D27CA9B62A2BE29600D2ACBB /* DatePickerViewController.swift */,
 				D281A3FF2A12F36800827776 /* DateHeaderView.swift */,
+				D27CA9B82A2BF57D00D2ACBB /* DatePickerViewCell.swift */,
+				D276567A2A2D2B76000BD19B /* DividerView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -437,6 +452,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D28FBC9D2A2CF8A400B53B7E /* DatePickerViewModel.swift in Sources */,
+				D27CA9B92A2BF57D00D2ACBB /* DatePickerViewCell.swift in Sources */,
 				D288311B29B225D8007E6D3B /* ViewController.swift in Sources */,
 				D29EFD2E29C34C7C00C68D97 /* UserPreferences.swift in Sources */,
 				D2887E3E29C0D134003AAA5B /* UILabel+AttributesBuilder.swift in Sources */,
@@ -453,14 +470,17 @@
 				D27D9FB52A02F7A10099BA74 /* TeamView.swift in Sources */,
 				D2887E3829C0D134003AAA5B /* UIView+AttributesBuilder.swift in Sources */,
 				D27C36BF29E5EAF7008FBADF /* EventTestData.swift in Sources */,
+				D27CA9B72A2BE29600D2ACBB /* DatePickerViewController.swift in Sources */,
 				D29E88CC29C3B2C700175A85 /* TabModel.swift in Sources */,
 				D288311929B225D8007E6D3B /* SceneDelegate.swift in Sources */,
 				D2887E3B29C0D134003AAA5B /* UIText+ViewAttributesBuilder.swift in Sources */,
+				D276567B2A2D2B76000BD19B /* DividerView.swift in Sources */,
 				D2886B9E29C1D03C0072C108 /* TabView.swift in Sources */,
 				D28478E529C326A0009DC72F /* String+Extensions.swift in Sources */,
 				D29F15C52A0C2D94002A20BD /* AlamofireAPIClient.swift in Sources */,
 				D2887E3729C0D134003AAA5B /* UIButton+AttributesBuilder.swift in Sources */,
 				D28478E829C328BE009DC72F /* LocalizableKey.swift in Sources */,
+				D28FBC9B2A2CF83A00B53B7E /* DatePickerModel.swift in Sources */,
 				D2887E3929C0D134003AAA5B /* UITextField+AttributesBuilder.swift in Sources */,
 				D2887E3C29C0D134003AAA5B /* UIScrollView+AttributesBuilder.swift in Sources */,
 				D29F15BD2A0C2BB4002A20BD /* EventAPIModels.swift in Sources */,

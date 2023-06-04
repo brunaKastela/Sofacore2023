@@ -12,6 +12,8 @@ class ViewController: UIViewController {
     lazy var tabView = TabView(with: tabModel)
     let containerView = UIView()
 
+    let datePickerViewController = DatePickerViewController(viewModel: DatePickerViewModel())
+
     let firstViewController = EventsViewController()
     let secondViewController = UIViewController()
     let thirdViewController = UIViewController()
@@ -31,6 +33,12 @@ class ViewController: UIViewController {
 
         tabView.delegate = self
         tabItemViewTapped(UserPreferences.selectedIndex)
+
+        if let date = UserPreferences.selectedDateIndex as? Date {
+            selectDate(date)
+        } else {
+            selectDate(Date())
+        }
     }
 
 }
@@ -41,11 +49,14 @@ extension ViewController: BaseViewProtocol {
         view.addSubview(safeAreaView)
         view.addSubview(headerView)
         view.addSubview(tabView)
+        view.addSubview(datePickerViewController.view)
         view.addSubview(containerView)
     }
 
     func styleViews() {
         safeAreaView.backgroundColor = headerView.backgroundColor
+
+        datePickerViewController.delegate = self
 
         secondViewController.view.backgroundColor(.red)
 
@@ -69,8 +80,14 @@ extension ViewController: BaseViewProtocol {
             make.leading.trailing.equalToSuperview()
         }
 
-        containerView.snp.makeConstraints { make in
+        datePickerViewController.view.snp.makeConstraints { make in
             make.top.equalTo(tabView.snp.bottom)
+            make.leading.trailing.equalToSuperview()
+            make.height.equalTo(48)
+        }
+
+        containerView.snp.makeConstraints { make in
+            make.top.equalTo(datePickerViewController.view.snp.bottom)
             make.leading.trailing.bottom.equalToSuperview()
         }
     }
@@ -118,6 +135,19 @@ extension ViewController: TabItemViewDelegate {
         selectedViewController.view.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
+    }
+
+}
+
+extension ViewController: DatePickerDelegate {
+
+    func onDateSelected(_ date: Date) {
+        firstViewController.reloadEvents(for: date)
+        UserPreferences.selectedDateIndex = date
+    }
+
+    func selectDate(_ date: Date) {
+        datePickerViewController.selectItem(withDate: date)
     }
 
 }
