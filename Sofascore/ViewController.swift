@@ -33,12 +33,6 @@ class ViewController: UIViewController {
 
         tabView.delegate = self
         tabItemViewTapped(UserPreferences.selectedIndex)
-
-        if let date = UserPreferences.selectedDateIndex as? Date {
-            selectDate(date)
-        } else {
-            selectDate(Date())
-        }
     }
 
 }
@@ -144,10 +138,6 @@ extension ViewController: DatePickerDelegate {
     func onDateSelected(_ date: Date) {
         firstViewController.reloadEvents(for: date)
         UserPreferences.selectedDateIndex = date
-    }
-
-    func selectDate(_ date: Date) {
-        datePickerViewController.selectItem(withDate: date)
     }
 
 }

@@ -173,9 +173,10 @@ extension EventViewModel {
         let eventNumber = events.count
 
         if eventNumber == 1 {
-            return "\(eventNumber) Event"
+            return "\(eventNumber) " + .localized(.event)
         }
-        return"\(eventNumber) Events"
+
+        return "\(eventNumber) " + .localized(.events)
     }
 
     func configure(of cell: Any, with model: Any) {

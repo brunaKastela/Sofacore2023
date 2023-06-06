@@ -29,7 +29,6 @@ class EventsViewController: UIViewController {
     }
 
     func reloadEvents(for date: Date) {
-        print(date)
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd"
         let formattedDate = dateFormatter.string(from: date)

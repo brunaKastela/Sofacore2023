@@ -30,6 +30,17 @@ class DatePickerViewController: UIViewController, BaseViewProtocol {
         addViews()
         styleViews()
         setupConstraints()
+
+    }
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+
+        if let date = UserPreferences.selectedDateIndex as? Date {
+            selectItem(withDate: date)
+        } else {
+            selectItem(withDate: Date())
+        }
     }
 
     func addViews() {
