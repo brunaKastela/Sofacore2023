@@ -2,7 +2,7 @@ import UIKit
 import SnapKit
 import SDWebImage
 
-class TournamentHeaderView: UITableViewHeaderFooterView, Reusable {
+class TournamentHeaderView: UITableViewCell, Reusable {
 
     private let backView = UIView()
 
@@ -13,8 +13,8 @@ class TournamentHeaderView: UITableViewHeaderFooterView, Reusable {
     private let pointerImageView = UIImageView()
     private let leagueLabel = UILabel()
 
-    override init(reuseIdentifier: String?) {
-        super.init(reuseIdentifier: reuseIdentifier)
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
 
         addViews()
         styleViews()

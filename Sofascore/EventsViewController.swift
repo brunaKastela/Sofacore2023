@@ -59,7 +59,7 @@ extension EventsViewController: BaseViewProtocol {
         tableView.backgroundView = backgroundView
 
         tableView.register(EventCell.self, forCellReuseIdentifier: EventCell.identifier)
-        tableView.register(TournamentHeaderView.self, forHeaderFooterViewReuseIdentifier: TournamentHeaderView.identifier)
+        tableView.register(TournamentHeaderView.self, forCellReuseIdentifier: TournamentHeaderView.identifier)
         tableView.register(DividerView.self, forHeaderFooterViewReuseIdentifier: DividerView.identifier)
 
         tableView.dataSource = self
@@ -70,6 +70,7 @@ extension EventsViewController: BaseViewProtocol {
 
         tableView.sectionFooterHeight = 1
         tableView.sectionHeaderTopPadding = 0
+        tableView.sectionHeaderHeight = 0
 
     }
 
@@ -89,12 +90,8 @@ extension EventsViewController: BaseViewProtocol {
 
 extension EventsViewController: UITableViewDataSource, UITableViewDelegate {
 
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        guard let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: TournamentHeaderView.identifier) as? TournamentHeaderView else {
-            return nil
-        }
-        eventViewModel.configureHeader(of: headerView, with: eventViewModel.eventSections[section].tournament)
-        return headerView
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return CGFloat.leastNormalMagnitude
     }
 
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -102,16 +99,25 @@ extension EventsViewController: UITableViewDataSource, UITableViewDelegate {
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        eventViewModel.eventSections[section].events.count
+        eventViewModel.eventSections[section].events.count + 1
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: EventCell.identifier, for: indexPath) as? EventCell else {
-            return UITableViewCell()
-        }
+        if indexPath.row == 0 {
+            guard let headerCell = tableView.dequeueReusableCell(withIdentifier: TournamentHeaderView.identifier) as? TournamentHeaderView else {
+                return UITableViewCell()
+            }
 
-        eventViewModel.configure(of: cell, with: eventViewModel.eventSections[indexPath.section].events[indexPath.row])
-        return cell
+            eventViewModel.configureHeader(of: headerCell, with: eventViewModel.eventSections[indexPath.section].tournament)
+            return headerCell
+        } else {
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: EventCell.identifier, for: indexPath) as? EventCell else {
+                return UITableViewCell()
+            }
+
+            eventViewModel.configure(of: cell, with: eventViewModel.eventSections[indexPath.section].events[indexPath.row - 1])
+            return cell
+        }
     }
 
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
