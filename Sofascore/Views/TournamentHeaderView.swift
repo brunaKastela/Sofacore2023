@@ -34,6 +34,14 @@ class TournamentHeaderView: UITableViewCell, Reusable {
         iconImageView.image = nil
     }
 
+    func configureTournamentCell(with model: Tournament) {
+        countryLabel.text = model.country.name
+        leagueLabel.text = model.name
+
+        iconImageView.sd_setImage(
+            with: URL(string: "https://academy.dev.sofascore.com/tournament/\(model.id)/image"))
+    }
+
 }
 
 extension TournamentHeaderView: BaseViewProtocol {
@@ -83,18 +91,6 @@ extension TournamentHeaderView: BaseViewProtocol {
             make.centerY.equalToSuperview()
             make.trailing.lessThanOrEqualToSuperview().inset(16)
         }
-    }
-
-}
-
-extension TournamentHeaderView {
-
-    func configureTournamentCell(with model: Tournament) {
-        countryLabel.text = model.country.name
-        leagueLabel.text = model.name
-
-        iconImageView.sd_setImage(
-            with: URL(string: "https://academy.dev.sofascore.com/tournament/\(model.id)/image"))
     }
 
 }
