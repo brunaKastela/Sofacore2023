@@ -27,8 +27,8 @@ class DatePickerViewController: UIViewController, BaseViewProtocol {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        addViews()
         styleViews()
+        addViews()
         setupConstraints()
 
     }
@@ -44,19 +44,23 @@ class DatePickerViewController: UIViewController, BaseViewProtocol {
     }
 
     func addViews() {
-        let collectionViewLayout = UICollectionViewFlowLayout()
-        collectionViewLayout.scrollDirection = .horizontal
-        collectionViewLayout.minimumInteritemSpacing = 0
-        collectionViewLayout.minimumLineSpacing = 0
-        collectionViewLayout.itemSize = CGSize(width: UIScreen.main.bounds.width / 7, height: 48)
-        collectionView = UICollectionView(frame: .zero, collectionViewLayout: collectionViewLayout)
         view.addSubview(collectionView)
     }
 
     func styleViews() {
+        let collectionViewLayout = UICollectionViewFlowLayout()
+        collectionViewLayout.scrollDirection = .horizontal
+
+        collectionViewLayout.minimumInteritemSpacing = 0
+        collectionViewLayout.minimumLineSpacing = 0
+
+        collectionViewLayout.itemSize = CGSize(width: UIScreen.main.bounds.width / 7, height: 48)
+        collectionView = UICollectionView(frame: .zero, collectionViewLayout: collectionViewLayout)
+
         collectionView.dataSource = self
         collectionView.delegate = self
-        collectionView.register(DatePickerViewCell.self, forCellWithReuseIdentifier: "test")
+        collectionView.register(DatePickerViewCell.self, forCellWithReuseIdentifier: DatePickerViewCell.identifier)
+
         collectionView.showsHorizontalScrollIndicator = false
         collectionView.backgroundColor = .colorPrimaryVariant
     }
@@ -80,12 +84,12 @@ extension DatePickerViewController: UICollectionViewDataSource {
         cellForItemAt indexPath: IndexPath
     ) -> UICollectionViewCell {
         guard
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "test", for: indexPath) as? DatePickerViewCell else {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: DatePickerViewCell.identifier, for: indexPath
+        ) as? DatePickerViewCell else {
             return UICollectionViewCell()
         }
 
         cell.configure(with: viewModel.dates[indexPath.row])
-
         return cell
     }
 

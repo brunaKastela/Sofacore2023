@@ -34,7 +34,7 @@ class DateHeaderView: BaseView {
             make.leading.equalToSuperview().inset(16)
             make.top.equalToSuperview().inset(24)
             make.bottom.equalToSuperview().inset(8)
-            make.trailing.lessThanOrEqualTo(eventNumberLabel.snp.trailing).offset(50)
+            make.trailing.lessThanOrEqualTo(eventNumberLabel.snp.leading).offset(-16)
         }
 
         eventNumberLabel.snp.makeConstraints { make in

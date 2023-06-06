@@ -1,6 +1,6 @@
 import UIKit
 
-class DatePickerViewCell: UICollectionViewCell {
+class DatePickerViewCell: UICollectionViewCell, Reusable {
 
     let stackView = UIStackView()
 

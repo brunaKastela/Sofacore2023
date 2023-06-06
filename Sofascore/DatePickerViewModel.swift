@@ -21,7 +21,6 @@ class DatePickerViewModel {
             else { continue }
 
             datePickerModels.append(DatePickerModel(with: currentDate))
-
         }
 
         return datePickerModels
