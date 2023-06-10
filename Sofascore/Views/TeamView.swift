@@ -38,8 +38,4 @@ class TeamView: BaseView {
         }
     }
 
-    override func setupGestureRecognizers() {
-        // Default implementation is empty
-    }
-
 }

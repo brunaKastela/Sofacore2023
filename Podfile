@@ -8,4 +8,6 @@ target 'Sofascore' do
   # Pods for Sofascore
   pod 'SnapKit', '~> 5.6.0'
   pod 'SwiftLint', '~> 0.50.0'
+  pod 'Alamofire'
+  pod 'SDWebImage'
 end

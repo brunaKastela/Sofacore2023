@@ -1,10 +1,16 @@
 import UIKit
+import SnapKit
 
 class EventsViewController: UIViewController {
 
+    private var eventSections: [EventSection] = []
     private let eventViewModel = EventViewModel()
 
-    private let tableView = UITableView()
+    private let backgroundView = UIView()
+    private let dateHeaderView = DateHeaderView()
+    private let tableView = UITableView(frame: CGRect.zero, style: .grouped)
+
+    private let slug = "football"
 
     init() {
         super.init(nibName: nil, bundle: nil)
@@ -18,8 +24,24 @@ class EventsViewController: UIViewController {
         super.viewDidLoad()
 
         addViews()
-        styleViews()
         setupConstraints()
+        styleViews()
+    }
+
+    func reloadEvents(for date: Date) {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        let formattedDate = dateFormatter.string(from: date)
+
+        eventViewModel.getEvents(for: slug, for: formattedDate) { [weak self] in
+            self?.eventViewModel.prepareEvents()
+
+            self?.dateHeaderView.setView(
+                for: self?.eventViewModel.getDateLabel(for: date),
+                with: self?.eventViewModel.getEventNumberLabel())
+
+            self?.tableView.reloadData()
+        }
     }
 
 }
@@ -27,17 +49,38 @@ class EventsViewController: UIViewController {
 extension EventsViewController: BaseViewProtocol {
 
     func addViews() {
+        view.addSubview(dateHeaderView)
         view.addSubview(tableView)
     }
 
     func styleViews() {
+        backgroundView.backgroundColor = .surfaceSurface0
+        tableView.backgroundView = backgroundView
+
         tableView.register(EventCell.self, forCellReuseIdentifier: EventCell.identifier)
+        tableView.register(TournamentHeaderView.self, forCellReuseIdentifier: TournamentHeaderView.identifier)
+        tableView.register(DividerView.self, forHeaderFooterViewReuseIdentifier: DividerView.identifier)
+
         tableView.dataSource = self
+        tableView.delegate = self
+
         tableView.estimatedRowHeight = UITableView.automaticDimension
         tableView.separatorStyle = .none
+
+        tableView.sectionFooterHeight = 1
+        tableView.sectionHeaderTopPadding = 0
+        tableView.sectionHeaderHeight = 0
+
+        tableView.tableHeaderView = dateHeaderView
     }
 
     func setupConstraints() {
+        dateHeaderView.snp.makeConstraints { make in
+            make.top.equalTo(tableView.snp.top)
+            make.horizontalEdges.equalToSuperview()
+            make.height.equalTo(48)
+        }
+
         tableView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
@@ -45,25 +88,74 @@ extension EventsViewController: BaseViewProtocol {
 
 }
 
-extension EventsViewController: UITableViewDataSource {
+extension EventsViewController: UITableViewDataSource, UITableViewDelegate {
+
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return CGFloat.leastNormalMagnitude
+    }
+
+    func numberOfSections(in tableView: UITableView) -> Int {
+        eventViewModel.eventSections.count
+    }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        eventViewModel.eventCellModels.count
+        eventViewModel.eventSections[section].events.count + 1
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: EventCell.identifier) as? EventCell
-        else {
-            return UITableViewCell()
+        if indexPath.row == 0 {
+            guard
+                let headerCell = tableView.dequeueReusableCell(withIdentifier: TournamentHeaderView.identifier
+            ) as? TournamentHeaderView else {
+                    return UITableViewCell()
+            }
+
+            eventViewModel.configureHeader(
+                of: headerCell,
+                with: eventViewModel.eventSections[indexPath.section].tournament)
+
+            return headerCell
+        } else {
+            guard
+                let cell = tableView.dequeueReusableCell(withIdentifier: EventCell.identifier, for: indexPath
+            ) as? EventCell else {
+                return UITableViewCell()
+            }
+
+            eventViewModel.configure(
+                of: cell,
+                with: eventViewModel.eventSections[indexPath.section].events[indexPath.row - 1])
+
+            return cell
+        }
+    }
+
+    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        guard section != eventViewModel.eventSections.count - 1 else { return nil }
+
+        guard
+            let footerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: DividerView.identifier
+        ) as? DividerView else {
+            return nil
         }
 
-        let index = indexPath.row
+        return footerView
+    }
 
-        if index >= 0 && index < eventViewModel.eventCellModels.count {
-            eventViewModel.configure(of: cell, with: eventViewModel.eventCellModels[indexPath.row])
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let selectedEvent = eventViewModel.eventSections[indexPath.section].events[indexPath.row]
+
+        let tmpVC = UIViewController()
+        tmpVC.view?.backgroundColor = .white
+        let tmpLabel = UILabel()
+        tmpLabel.text(String(selectedEvent.eventId))
+
+        tmpVC.view.addSubview(tmpLabel)
+        tmpLabel.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.centerY.equalToSuperview()
         }
-
-        return cell
+        present(tmpVC, animated: true)
     }
 
 }

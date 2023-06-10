@@ -41,4 +41,8 @@ extension UIImage {
     static var realSociedadIcon: UIImage {
         UIImage(named: "icon_real_sociedad")!
     }
+
+    static var pointerRight: UIImage {
+        UIImage(named: "pointer_right")!
+    }
 }

@@ -18,6 +18,8 @@ struct EventModel {
 
 struct EventCellModel {
 
+    let eventId: Int
+
     let startTime: String
     let eventStatus: String
     let eventStatusColor: UIColor

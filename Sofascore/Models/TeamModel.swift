@@ -2,7 +2,7 @@ import UIKit
 
 struct TeamModel {
 
-    let teamIcon: UIImage
+    let teamIconUrl: URL?
     let teamName: String
     var teamScore: String
     let teamNameColor: UIColor
