@@ -9,7 +9,7 @@ class EventViewModel {
 
     private let apiClient: APICient
 
-    private enum Constants {
+    enum Constants {
 
         static let finishedGameLabel = "FT"
         static let upcomingGameLabel = "-"
