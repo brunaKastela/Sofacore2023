@@ -68,6 +68,8 @@
 		D2D9A15A29C0A610001A8FC3 /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2D9A15829C0A610001A8FC3 /* BaseView.swift */; };
 		D2D9A15B29C0A610001A8FC3 /* BaseViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2D9A15929C0A610001A8FC3 /* BaseViewProtocol.swift */; };
 		D2E3FE562A35F3B0002B47B6 /* IncidentCellModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2E3FE552A35F3B0002B47B6 /* IncidentCellModels.swift */; };
+		D2E3FE582A360D7C002B47B6 /* PeriodCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2E3FE572A360D7C002B47B6 /* PeriodCell.swift */; };
+		D2E3FE5A2A360E64002B47B6 /* IncidentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2E3FE592A360E64002B47B6 /* IncidentCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -139,6 +141,8 @@
 		D2D9A15829C0A610001A8FC3 /* BaseView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseView.swift; sourceTree = "<group>"; };
 		D2D9A15929C0A610001A8FC3 /* BaseViewProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewProtocol.swift; sourceTree = "<group>"; };
 		D2E3FE552A35F3B0002B47B6 /* IncidentCellModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IncidentCellModels.swift; sourceTree = "<group>"; };
+		D2E3FE572A360D7C002B47B6 /* PeriodCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeriodCell.swift; sourceTree = "<group>"; };
+		D2E3FE592A360E64002B47B6 /* IncidentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IncidentCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -307,6 +311,8 @@
 				D276567A2A2D2B76000BD19B /* DividerView.swift */,
 				D22A7E8D2A34EA360074DCA4 /* NavigationHeaderView.swift */,
 				D22A7E8F2A3513B30074DCA4 /* EventDetailsView.swift */,
+				D2E3FE572A360D7C002B47B6 /* PeriodCell.swift */,
+				D2E3FE592A360E64002B47B6 /* IncidentCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -495,6 +501,7 @@
 				D27CA9B72A2BE29600D2ACBB /* DatePickerViewController.swift in Sources */,
 				D29E88CC29C3B2C700175A85 /* TabModel.swift in Sources */,
 				D288311929B225D8007E6D3B /* SceneDelegate.swift in Sources */,
+				D2E3FE582A360D7C002B47B6 /* PeriodCell.swift in Sources */,
 				D2887E3B29C0D134003AAA5B /* UIText+ViewAttributesBuilder.swift in Sources */,
 				D276567B2A2D2B76000BD19B /* DividerView.swift in Sources */,
 				D2886B9E29C1D03C0072C108 /* TabView.swift in Sources */,
@@ -508,6 +515,7 @@
 				D2887E3C29C0D134003AAA5B /* UIScrollView+AttributesBuilder.swift in Sources */,
 				D29F15BD2A0C2BB4002A20BD /* EventAPIModels.swift in Sources */,
 				D28BE79E29D1DC83009E845E /* EventStates.swift in Sources */,
+				D2E3FE5A2A360E64002B47B6 /* IncidentCell.swift in Sources */,
 				D2887E3A29C0D134003AAA5B /* UIImageView+AttributesBuilder.swift in Sources */,
 				D29577CD2A11BAB500723E17 /* EventSection.swift in Sources */,
 				D22A7E922A3542330074DCA4 /* EventIncidentsViewModel.swift in Sources */,

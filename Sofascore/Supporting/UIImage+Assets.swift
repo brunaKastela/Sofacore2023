@@ -49,4 +49,8 @@ extension UIImage {
     static var pointerBack: UIImage {
         UIImage(named: "icon_arrow_back")!
     }
+
+    static var card: UIImage {
+        UIImage(named: "ic_card")!
+    }
 }
