@@ -70,6 +70,7 @@
 		D2E3FE562A35F3B0002B47B6 /* IncidentCellModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2E3FE552A35F3B0002B47B6 /* IncidentCellModels.swift */; };
 		D2E3FE582A360D7C002B47B6 /* PeriodCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2E3FE572A360D7C002B47B6 /* PeriodCell.swift */; };
 		D2E3FE5A2A360E64002B47B6 /* IncidentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2E3FE592A360E64002B47B6 /* IncidentCell.swift */; };
+		D2E3FE5C2A363847002B47B6 /* EmptyIncidentsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2E3FE5B2A363847002B47B6 /* EmptyIncidentsView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -143,6 +144,7 @@
 		D2E3FE552A35F3B0002B47B6 /* IncidentCellModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IncidentCellModels.swift; sourceTree = "<group>"; };
 		D2E3FE572A360D7C002B47B6 /* PeriodCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeriodCell.swift; sourceTree = "<group>"; };
 		D2E3FE592A360E64002B47B6 /* IncidentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IncidentCell.swift; sourceTree = "<group>"; };
+		D2E3FE5B2A363847002B47B6 /* EmptyIncidentsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyIncidentsView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -313,6 +315,7 @@
 				D22A7E8F2A3513B30074DCA4 /* EventDetailsView.swift */,
 				D2E3FE572A360D7C002B47B6 /* PeriodCell.swift */,
 				D2E3FE592A360E64002B47B6 /* IncidentCell.swift */,
+				D2E3FE5B2A363847002B47B6 /* EmptyIncidentsView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -486,6 +489,7 @@
 				D27081E32A34CEAA00C3F00E /* EventDetailsViewController.swift in Sources */,
 				D288311729B225D8007E6D3B /* AppDelegate.swift in Sources */,
 				D2B02C4529D088EA00EB918E /* EventViewModel.swift in Sources */,
+				D2E3FE5C2A363847002B47B6 /* EmptyIncidentsView.swift in Sources */,
 				D2887E4429C0F152003AAA5B /* UIColors+Styles.swift in Sources */,
 				D28BE79A29D1D3DA009E845E /* EventsViewController.swift in Sources */,
 				D27D063A2A1258230079CC79 /* TournamentHeaderView.swift in Sources */,

@@ -20,9 +20,7 @@ class EventIncidentsViewModel {
     }
 
     func prepareEventIncidents() {
-        print(incidents)
         sectionIncidents()
-        print(incidentSections)
     }
 
     func getIncidents(for id: Int, completion: @escaping () -> Void) {
@@ -77,7 +75,7 @@ class EventIncidentsViewModel {
                                    id: incident.id,
                                    time: incident.time,
                                    type: incident.type)
-                }
+            }
         }
     }
 
@@ -106,17 +104,19 @@ class EventIncidentsViewModel {
     func getCardCellModel(for incident: CardModel) -> IncidentCellModel {
         IncidentCellModel(playerName: incident.player.name,
                           incidentIcon: .card,
-                          incidentIconTint: .yellow,
-                          time: String(incident.time),
-                          score: nil)
+                          incidentIconTint: .statusAlert,
+                          time: "\(String(incident.time))'",
+                          score: nil,
+                          side: incident.teamSide)
     }
 
     func getGoalCellModel(for incident: GoalModel) -> IncidentCellModel {
         IncidentCellModel(playerName: incident.player.name,
                           incidentIcon: .footballIcon,
-                          incidentIconTint: .green,
-                          time: String(incident.time),
-                          score: "\(incident.homeScore) - \(incident.awayScore)")
+                          incidentIconTint: .statusSuccess,
+                          time: "\(String(incident.time))'",
+                          score: "\(incident.homeScore) - \(incident.awayScore)",
+                          side: incident.scoringTeam)
     }
 
     func configureIncidentCell(of cell: Any, with model: Any) {
@@ -136,4 +136,5 @@ class EventIncidentsViewModel {
 
         cell.configurePeriodCell(with: model)
     }
+
 }

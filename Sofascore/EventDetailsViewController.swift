@@ -6,6 +6,7 @@ class EventDetailsViewController: UIViewController {
 
     private let navigationView = NavigationHeaderView()
     private let eventDetailsView = EventDetailsView()
+    let emptyIncidentsView = EmptyIncidentsView()
     private let tableView = UITableView(frame: CGRect.zero, style: .grouped)
 
     var tournament: Tournament?
@@ -40,18 +41,24 @@ class EventDetailsViewController: UIViewController {
             let formattedDate = dateFormatter.string(from: date)
 
             eventDetailsView.configure(with: event, for: formattedDate)
-            loadEventIncidents(for: event.eventId, at: date)
+            loadEventIncidents(for: event.eventId)
+            prepareMainView()
         }
     }
 
-    func loadEventIncidents(for id: Int, at date: Date) {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd"
-        let formattedDate = dateFormatter.string(from: date)
-
+    func loadEventIncidents(for id: Int) {
         eventDetailsViewModel.getIncidents(for: id) { [weak self] in
             self?.eventDetailsViewModel.prepareEventIncidents()
+            self?.prepareMainView()
             self?.tableView.reloadData()
+        }
+    }
+
+    func prepareMainView() {
+        if eventDetailsViewModel.incidentSections.isEmpty {
+            emptyIncidentsView.isHidden = false
+        } else {
+            emptyIncidentsView.isHidden = true
         }
     }
 
@@ -80,6 +87,7 @@ extension EventDetailsViewController: BaseViewProtocol {
         view.addSubview(navigationView)
         view.addSubview(eventDetailsView)
         view.addSubview(tableView)
+        view.addSubview(emptyIncidentsView)
     }
 
     func setupConstraints() {
@@ -93,10 +101,16 @@ extension EventDetailsViewController: BaseViewProtocol {
             make.horizontalEdges.equalToSuperview().inset(16)
         }
 
+        emptyIncidentsView.snp.makeConstraints { make in
+            make.top.equalTo(eventDetailsView.snp.bottom).offset(8)
+            make.horizontalEdges.equalToSuperview()
+            make.bottom.lessThanOrEqualToSuperview()
+        }
+
         tableView.snp.makeConstraints { make in
             make.top.equalTo(eventDetailsView.snp.bottom)
             make.horizontalEdges.equalToSuperview()
-            make.bottom.equalToSuperview()
+            make.bottom.greaterThanOrEqualToSuperview()
         }
     }
 
@@ -105,7 +119,7 @@ extension EventDetailsViewController: BaseViewProtocol {
 extension EventDetailsViewController: UITableViewDataSource, UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return CGFloat.leastNormalMagnitude
+        return 8
     }
 
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -143,7 +157,6 @@ extension EventDetailsViewController: UITableViewDataSource, UITableViewDelegate
     }
 
 }
-
 
 extension EventDetailsViewController: NavigationHeaderDelegate {
 
