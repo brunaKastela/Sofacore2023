@@ -21,7 +21,6 @@ class EventViewModel {
     }
 
     func prepareEvents() {
-        mapEvents()
         sectionEvents()
     }
 

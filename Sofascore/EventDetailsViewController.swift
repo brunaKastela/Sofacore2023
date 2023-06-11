@@ -2,6 +2,8 @@ import UIKit
 
 class EventDetailsViewController: UIViewController {
 
+    let eventDetailsViewModel = EventIncidentsViewModel()
+
     private let navigationView = NavigationHeaderView()
     private let eventDetailsView = EventDetailsView()
 
@@ -37,6 +39,18 @@ class EventDetailsViewController: UIViewController {
             let formattedDate = dateFormatter.string(from: date)
 
             eventDetailsView.configure(with: event, for: formattedDate)
+            loadEventIncidents(for: event.eventId, at: date)
+
+        }
+    }
+
+    func loadEventIncidents(for id: Int, at date: Date) {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        let formattedDate = dateFormatter.string(from: date)
+
+        eventDetailsViewModel.getIncidents(for: id) { [weak self] in
+            self?.eventDetailsViewModel.prepareEventIncidents()
         }
     }
 
