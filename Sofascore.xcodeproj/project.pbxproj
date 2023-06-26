@@ -8,6 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		2581349BF2E5421A187D1AF3 /* Pods_Sofascore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B47CFA874F244F898D517AD8 /* Pods_Sofascore.framework */; };
+		D22A7E8E2A34EA360074DCA4 /* NavigationHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D22A7E8D2A34EA360074DCA4 /* NavigationHeaderView.swift */; };
+		D22A7E902A3513B30074DCA4 /* EventDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D22A7E8F2A3513B30074DCA4 /* EventDetailsView.swift */; };
+		D22A7E922A3542330074DCA4 /* EventIncidentsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D22A7E912A3542330074DCA4 /* EventIncidentsViewModel.swift */; };
+		D22A7E942A3542D70074DCA4 /* IncidentAPIModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D22A7E932A3542D70074DCA4 /* IncidentAPIModel.swift */; };
+		D27081E32A34CEAA00C3F00E /* EventDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D27081E22A34CEAA00C3F00E /* EventDetailsViewController.swift */; };
 		D276567B2A2D2B76000BD19B /* DividerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D276567A2A2D2B76000BD19B /* DividerView.swift */; };
 		D27C36BF29E5EAF7008FBADF /* EventTestData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D27C36BE29E5EAF7008FBADF /* EventTestData.swift */; };
 		D27CA9B72A2BE29600D2ACBB /* DatePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D27CA9B62A2BE29600D2ACBB /* DatePickerViewController.swift */; };
@@ -62,12 +67,21 @@
 		D2B02C4529D088EA00EB918E /* EventViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2B02C4429D088EA00EB918E /* EventViewModel.swift */; };
 		D2D9A15A29C0A610001A8FC3 /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2D9A15829C0A610001A8FC3 /* BaseView.swift */; };
 		D2D9A15B29C0A610001A8FC3 /* BaseViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2D9A15929C0A610001A8FC3 /* BaseViewProtocol.swift */; };
+		D2E3FE562A35F3B0002B47B6 /* IncidentCellModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2E3FE552A35F3B0002B47B6 /* IncidentCellModels.swift */; };
+		D2E3FE582A360D7C002B47B6 /* PeriodCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2E3FE572A360D7C002B47B6 /* PeriodCell.swift */; };
+		D2E3FE5A2A360E64002B47B6 /* IncidentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2E3FE592A360E64002B47B6 /* IncidentCell.swift */; };
+		D2E3FE5C2A363847002B47B6 /* EmptyIncidentsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2E3FE5B2A363847002B47B6 /* EmptyIncidentsView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		6073530C202A18566A1F3B8A /* Pods-Sofascore.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Sofascore.debug.xcconfig"; path = "Target Support Files/Pods-Sofascore/Pods-Sofascore.debug.xcconfig"; sourceTree = "<group>"; };
 		634873A7C7DC2CA5E8B92EBB /* Pods-Sofascore.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Sofascore.release.xcconfig"; path = "Target Support Files/Pods-Sofascore/Pods-Sofascore.release.xcconfig"; sourceTree = "<group>"; };
 		B47CFA874F244F898D517AD8 /* Pods_Sofascore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Sofascore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D22A7E8D2A34EA360074DCA4 /* NavigationHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationHeaderView.swift; sourceTree = "<group>"; };
+		D22A7E8F2A3513B30074DCA4 /* EventDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDetailsView.swift; sourceTree = "<group>"; };
+		D22A7E912A3542330074DCA4 /* EventIncidentsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventIncidentsViewModel.swift; sourceTree = "<group>"; };
+		D22A7E932A3542D70074DCA4 /* IncidentAPIModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IncidentAPIModel.swift; sourceTree = "<group>"; };
+		D27081E22A34CEAA00C3F00E /* EventDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDetailsViewController.swift; sourceTree = "<group>"; };
 		D276567A2A2D2B76000BD19B /* DividerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DividerView.swift; sourceTree = "<group>"; };
 		D27C36BE29E5EAF7008FBADF /* EventTestData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventTestData.swift; sourceTree = "<group>"; };
 		D27CA9B62A2BE29600D2ACBB /* DatePickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatePickerViewController.swift; sourceTree = "<group>"; };
@@ -127,6 +141,10 @@
 		D2B02C4429D088EA00EB918E /* EventViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventViewModel.swift; sourceTree = "<group>"; };
 		D2D9A15829C0A610001A8FC3 /* BaseView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseView.swift; sourceTree = "<group>"; };
 		D2D9A15929C0A610001A8FC3 /* BaseViewProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewProtocol.swift; sourceTree = "<group>"; };
+		D2E3FE552A35F3B0002B47B6 /* IncidentCellModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IncidentCellModels.swift; sourceTree = "<group>"; };
+		D2E3FE572A360D7C002B47B6 /* PeriodCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeriodCell.swift; sourceTree = "<group>"; };
+		D2E3FE592A360E64002B47B6 /* IncidentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IncidentCell.swift; sourceTree = "<group>"; };
+		D2E3FE5B2A363847002B47B6 /* EmptyIncidentsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyIncidentsView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -197,7 +215,9 @@
 				D288311629B225D8007E6D3B /* AppDelegate.swift */,
 				D288311829B225D8007E6D3B /* SceneDelegate.swift */,
 				D288311A29B225D8007E6D3B /* ViewController.swift */,
+				D27081E22A34CEAA00C3F00E /* EventDetailsViewController.swift */,
 				D2B02C4429D088EA00EB918E /* EventViewModel.swift */,
+				D22A7E912A3542330074DCA4 /* EventIncidentsViewModel.swift */,
 				D28BE79929D1D3DA009E845E /* EventsViewController.swift */,
 				D28FBC9C2A2CF8A400B53B7E /* DatePickerViewModel.swift */,
 				D27CA9B62A2BE29600D2ACBB /* DatePickerViewController.swift */,
@@ -251,6 +271,8 @@
 				D29F15BC2A0C2BB4002A20BD /* EventAPIModels.swift */,
 				D29577CC2A11BAB400723E17 /* EventSection.swift */,
 				D28FBC9A2A2CF83A00B53B7E /* DatePickerModel.swift */,
+				D22A7E932A3542D70074DCA4 /* IncidentAPIModel.swift */,
+				D2E3FE552A35F3B0002B47B6 /* IncidentCellModels.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -289,6 +311,11 @@
 				D281A3FF2A12F36800827776 /* DateHeaderView.swift */,
 				D27CA9B82A2BF57D00D2ACBB /* DatePickerViewCell.swift */,
 				D276567A2A2D2B76000BD19B /* DividerView.swift */,
+				D22A7E8D2A34EA360074DCA4 /* NavigationHeaderView.swift */,
+				D22A7E8F2A3513B30074DCA4 /* EventDetailsView.swift */,
+				D2E3FE572A360D7C002B47B6 /* PeriodCell.swift */,
+				D2E3FE592A360E64002B47B6 /* IncidentCell.swift */,
+				D2E3FE5B2A363847002B47B6 /* EmptyIncidentsView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -454,18 +481,23 @@
 			files = (
 				D28FBC9D2A2CF8A400B53B7E /* DatePickerViewModel.swift in Sources */,
 				D27CA9B92A2BF57D00D2ACBB /* DatePickerViewCell.swift in Sources */,
+				D22A7E942A3542D70074DCA4 /* IncidentAPIModel.swift in Sources */,
 				D288311B29B225D8007E6D3B /* ViewController.swift in Sources */,
 				D29EFD2E29C34C7C00C68D97 /* UserPreferences.swift in Sources */,
 				D2887E3E29C0D134003AAA5B /* UILabel+AttributesBuilder.swift in Sources */,
 				D2887E4629C0F179003AAA5B /* UIFont+Styles.swift in Sources */,
+				D27081E32A34CEAA00C3F00E /* EventDetailsViewController.swift in Sources */,
 				D288311729B225D8007E6D3B /* AppDelegate.swift in Sources */,
 				D2B02C4529D088EA00EB918E /* EventViewModel.swift in Sources */,
+				D2E3FE5C2A363847002B47B6 /* EmptyIncidentsView.swift in Sources */,
 				D2887E4429C0F152003AAA5B /* UIColors+Styles.swift in Sources */,
 				D28BE79A29D1D3DA009E845E /* EventsViewController.swift in Sources */,
 				D27D063A2A1258230079CC79 /* TournamentHeaderView.swift in Sources */,
+				D22A7E902A3513B30074DCA4 /* EventDetailsView.swift in Sources */,
 				D281C82A2A03F58600964B0A /* TeamModel.swift in Sources */,
 				D2886B9C29C1C7800072C108 /* TabItemView.swift in Sources */,
 				D2D9A15A29C0A610001A8FC3 /* BaseView.swift in Sources */,
+				D2E3FE562A35F3B0002B47B6 /* IncidentCellModels.swift in Sources */,
 				D28BE79C29D1D4EF009E845E /* EventCell.swift in Sources */,
 				D27D9FB52A02F7A10099BA74 /* TeamView.swift in Sources */,
 				D2887E3829C0D134003AAA5B /* UIView+AttributesBuilder.swift in Sources */,
@@ -473,6 +505,7 @@
 				D27CA9B72A2BE29600D2ACBB /* DatePickerViewController.swift in Sources */,
 				D29E88CC29C3B2C700175A85 /* TabModel.swift in Sources */,
 				D288311929B225D8007E6D3B /* SceneDelegate.swift in Sources */,
+				D2E3FE582A360D7C002B47B6 /* PeriodCell.swift in Sources */,
 				D2887E3B29C0D134003AAA5B /* UIText+ViewAttributesBuilder.swift in Sources */,
 				D276567B2A2D2B76000BD19B /* DividerView.swift in Sources */,
 				D2886B9E29C1D03C0072C108 /* TabView.swift in Sources */,
@@ -481,12 +514,15 @@
 				D2887E3729C0D134003AAA5B /* UIButton+AttributesBuilder.swift in Sources */,
 				D28478E829C328BE009DC72F /* LocalizableKey.swift in Sources */,
 				D28FBC9B2A2CF83A00B53B7E /* DatePickerModel.swift in Sources */,
+				D22A7E8E2A34EA360074DCA4 /* NavigationHeaderView.swift in Sources */,
 				D2887E3929C0D134003AAA5B /* UITextField+AttributesBuilder.swift in Sources */,
 				D2887E3C29C0D134003AAA5B /* UIScrollView+AttributesBuilder.swift in Sources */,
 				D29F15BD2A0C2BB4002A20BD /* EventAPIModels.swift in Sources */,
 				D28BE79E29D1DC83009E845E /* EventStates.swift in Sources */,
+				D2E3FE5A2A360E64002B47B6 /* IncidentCell.swift in Sources */,
 				D2887E3A29C0D134003AAA5B /* UIImageView+AttributesBuilder.swift in Sources */,
 				D29577CD2A11BAB500723E17 /* EventSection.swift in Sources */,
+				D22A7E922A3542330074DCA4 /* EventIncidentsViewModel.swift in Sources */,
 				D28BE7A029D2002E009E845E /* EventModel.swift in Sources */,
 				D29B579829D3216A00E29387 /* Reusable.swift in Sources */,
 				D2887E3D29C0D134003AAA5B /* UIStackView+AttributesBuilder.swift in Sources */,

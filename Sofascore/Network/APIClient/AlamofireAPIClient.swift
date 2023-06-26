@@ -15,6 +15,13 @@ class AlamofireAPIClient: APICient {
             }
     }
 
+    func getIncidents(for id: Int, completion: @escaping ([BaseIncidentModel]?, Error?) -> Void) {
+        AF.request("https://academy.dev.sofascore.com/event/\(id)/incidents")
+                .responseDecodable(of: [BaseIncidentModel].self) { result in
+                    completion(result.value ?? [], result.error)
+                }
+    }
+
 }
 
 extension AlamofireAPIClient {

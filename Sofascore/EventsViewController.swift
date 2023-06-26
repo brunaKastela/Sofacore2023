@@ -1,6 +1,12 @@
 import UIKit
 import SnapKit
 
+protocol EventSelectionDelegate: AnyObject {
+
+    func didSelectEvent(_ tournament: Tournament,_ event: EventCellModel)
+
+}
+
 class EventsViewController: UIViewController {
 
     private var eventSections: [EventSection] = []
@@ -9,6 +15,8 @@ class EventsViewController: UIViewController {
     private let backgroundView = UIView()
     private let dateHeaderView = DateHeaderView()
     private let tableView = UITableView(frame: CGRect.zero, style: .grouped)
+
+    weak var delegate: EventSelectionDelegate?
 
     private let slug = "football"
 
@@ -143,19 +151,15 @@ extension EventsViewController: UITableViewDataSource, UITableViewDelegate {
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let selectedEvent = eventViewModel.eventSections[indexPath.section].events[indexPath.row]
+        let selectedTournament = eventViewModel.eventSections[indexPath.section].tournament
 
-        let tmpVC = UIViewController()
-        tmpVC.view?.backgroundColor = .white
-        let tmpLabel = UILabel()
-        tmpLabel.text(String(selectedEvent.eventId))
+        guard indexPath.row != 0 else { return }
 
-        tmpVC.view.addSubview(tmpLabel)
-        tmpLabel.snp.makeConstraints { make in
-            make.centerX.equalToSuperview()
-            make.centerY.equalToSuperview()
+        if let selectedEvent = eventViewModel.eventSections[indexPath.section].events[indexPath.row - 1]
+            as? EventCellModel {
+                delegate?.didSelectEvent(selectedTournament, selectedEvent)
+
         }
-        present(tmpVC, animated: true)
     }
 
 }

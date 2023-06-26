@@ -45,4 +45,12 @@ extension UIImage {
     static var pointerRight: UIImage {
         UIImage(named: "pointer_right")!
     }
+
+    static var pointerBack: UIImage {
+        UIImage(named: "icon_arrow_back")!
+    }
+
+    static var card: UIImage {
+        UIImage(named: "ic_card")!
+    }
 }

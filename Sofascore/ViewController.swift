@@ -14,11 +14,11 @@ class ViewController: UIViewController {
 
     let datePickerViewController = DatePickerViewController(viewModel: DatePickerViewModel())
 
-    let firstViewController = EventsViewController()
+    let eventsViewController = EventsViewController()
     let secondViewController = UIViewController()
     let thirdViewController = UIViewController()
 
-    lazy var viewControllers = [firstViewController, secondViewController, thirdViewController]
+    lazy var viewControllers = [eventsViewController, secondViewController, thirdViewController]
 
     override var preferredStatusBarStyle: UIStatusBarStyle {
         .lightContent
@@ -33,6 +33,8 @@ class ViewController: UIViewController {
 
         tabView.delegate = self
         tabItemViewTapped(UserPreferences.selectedIndex)
+
+        eventsViewController.delegate = self
     }
 
 }
@@ -136,8 +138,23 @@ extension ViewController: TabItemViewDelegate {
 extension ViewController: DatePickerDelegate {
 
     func onDateSelected(_ date: Date) {
-        firstViewController.reloadEvents(for: date)
+        eventsViewController.reloadEvents(for: date)
         UserPreferences.selectedDateIndex = date
     }
+
+}
+
+extension ViewController: EventSelectionDelegate {
+
+        func didSelectEvent(_ tournament: Tournament, _ event: EventCellModel) {
+            let eventDetailsViewController = EventDetailsViewController()
+            eventDetailsViewController.tournament = tournament
+            eventDetailsViewController.event = event
+
+            guard let date = UserPreferences.selectedDateIndex as? Date else { return }
+
+            eventDetailsViewController.date = date
+            navigationController?.pushViewController(eventDetailsViewController, animated: true)
+        }
 
 }
